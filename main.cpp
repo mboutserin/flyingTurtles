@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     TCanvas c("c","fenetre",400,400);
 
     //  coordonnées de la fenetre
-    c.Range(0,0,100,100);
+    c.Range(0,0,300,300);
 
     //  dessin de la balle à t=0
     TEllipse balle(10,10,5);
@@ -62,10 +62,10 @@ int main(int argc, char **argv)
     l->SetLineColor(kBlue);
     l->Draw();
 
-    while(true)
+    while(y>0)
     {
-        x = v0*cos(thetarad)*t;
-        y = 10-g*t*t/2+v0*cos(thetarad)*t;
+        x = v0*cos(thetarad)*t/1000;
+        y = 10-g*t*t/(2*1000*1000)+v0*cos(thetarad)*t/1000;
         t += dt;
         balle.SetX1(x);
         balle.SetY1(y);

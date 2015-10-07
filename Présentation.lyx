@@ -279,7 +279,7 @@ en intégrant par rapport au temps et par les conditions initiales, on a
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{dx}{dt}=v0
+\frac{dx}{dt}=v_{0}
 \]
 
 \end_inset
@@ -290,7 +290,7 @@ en intégrant par rapport au temps et par les conditions initiales, on a
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{dy}{dt}=-gt+v0
+\frac{dy}{dt}=-gt+v_{0}
 \]
 
 \end_inset
@@ -305,7 +305,7 @@ Et finalement, en re-intégrant, on obtient :
 \begin_layout Standard
 \begin_inset Formula 
 \[
-x=t.v0.cos(theta0)
+x=v_{0}.t.cos(\text{\theta})
 \]
 
 \end_inset
@@ -316,7 +316,7 @@ x=t.v0.cos(theta0)
 \begin_layout Standard
 \begin_inset Formula 
 \[
-y=-\frac{gt^{2}}{2}+t.v0.sin(theta0)+y0
+y=y_{0}-\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
 \]
 
 \end_inset

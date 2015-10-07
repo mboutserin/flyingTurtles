@@ -131,17 +131,15 @@ M.
 \end_layout
 
 \begin_layout Abstract
-Lors de ce projet nous allons dévelloper un programme 
+Lors de ce projet nous allons développer un jeu 
 \lang english
-en C++ basé sur le jeu Angry Birds.
- Nous allons appeler notre jeu flyingTurtles.
- Ce jeu est basé sur de la mécanique car le mouvement des tortues est régis
- par des équations paramétriques du mouvement.
- Nous allons tout d'abord simuler le simple mouvement d'un lancer de tortue
- qui peut être assimiler à la trajectoire d'une balle qui rebondira beaucoup
- moins.
- Par la suite nous pourrons ajouter des effets tels que le vent ou bien
- la pluie.
+en C++ basé sur le jeu Angry Birds, il sera nommé flyingTurtles.
+ Ce jeu se base sur la mécanique car assimilé à un lancer de balle sans
+ frottements dans un premier temps puis avec des effets tels que les intempéries
+ et donc des frottements et éventuellement des masses variables selon les
+ tortues (à voir).
+ Le but sera donc en un nombre de lancers limités de détruire les ennemis
+ qui se trouveront face aux tortues.
 \end_layout
 
 \begin_layout Standard
@@ -230,6 +228,107 @@ thepage}
 
 \begin_layout Part
 Lancer simple d'une tortue (assimilable au lancer d'une balle)
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+\bar under
+\color black
+Cas d'un lancer sans frottements :
+\bar default
+ 
+\shape default
+\color inherit
+on considère les constantes m(la masse de la tortue), la constante de gravité
+ g=9,81m/s et une hauteur de départ y0.
+ On entre également deux variables choisie arbitrairement par l'utilisateur
+ du logiciel, v0 la vitesse initiale en m/s et theta0 l'angle de lancer
+ initial.
+\end_layout
+
+\begin_layout Standard
+On a donc la situation initiale de base suivante : (insérer la figure)
+\end_layout
+
+\begin_layout Standard
+En utilisant le Principe Fondamental de la Dynamique, on a donc :
+\begin_inset Formula 
+\[
+m\frac{d^{2}x}{dt^{2}}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+m\frac{d^{2}y}{dt^{2}}=-mg
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+en intégrant par rapport au temps et par les conditions initiales, on a
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{dx}{dt}=v0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{dy}{dt}=-gt+v0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Et finalement, en re-intégrant, on obtient :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x=t.v0.cos(theta0)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y=-\frac{gt^{2}}{2}+t.v0.sin(theta0)+y0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+\bar under
+Cas d'un lancer avec frottements :
 \end_layout
 
 \begin_layout Part

@@ -365,7 +365,7 @@ Cas d'un lancer avec frottements :
 \bar default
  On reprend les notations et les équations qui précèdent en ajoutant les
  composantes liées à la force de frottement F.
- On définit la constante k qui est le coefficient de frottement de l'air.
+ On définit la constante k qui est le coefficient de frottement.
 \end_layout
 
 \begin_layout Standard
@@ -403,23 +403,12 @@ En résolvant l'équation différentielle et en intégrant le résultat, on obti
 \begin_layout Standard
 \begin_inset Formula 
 \[
-x=\tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))
+x=\frac{m}{k}.v_{0}.cos(\theta).(1-exp(-k
 \]
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-y=\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
-\]
-
-\end_inset
-
-
+)
 \end_layout
 
 \begin_layout Part

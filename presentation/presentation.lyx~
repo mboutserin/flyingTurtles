@@ -364,16 +364,12 @@ Cas d'un lancer avec frottements :
 placement H
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/balleQuiBougeSansFrottements.xcf
+	filename Images/balleQuiBougeAvecFrottements.xcf
 	scale 40
 
 \end_inset

@@ -360,6 +360,40 @@ Cas d'un lancer avec frottements :
 \end_inset
 
 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/balleQuiBougeSansFrottements.xcf
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lancer d'une tortue avec frottement
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

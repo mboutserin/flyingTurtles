@@ -251,6 +251,10 @@ on considère les constantes m(la masse de la tortue), la constante de gravité
  On entre également deux variables choisie arbitrairement par l'utilisateur
  du logiciel, v0 la vitesse initiale en m/s et theta0 l'angle de lancer
  initial.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -276,7 +280,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Conditions initiales d'un lancer deballe
+Conditions initiales d'un lancer de balle
 \end_layout
 
 \end_inset
@@ -333,6 +337,10 @@ Cas d'un lancer avec frottements :
  On reprend les notations et les équations qui précèdent en ajoutant les
  composantes liées à la force de frottement F.
  On définit la constante k qui est le coefficient de frottement de l'air.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

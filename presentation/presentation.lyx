@@ -131,9 +131,8 @@ M.
 \end_layout
 
 \begin_layout Abstract
-Lors de ce projet nous allons développer un jeu 
-\lang english
-en C++ basé sur le jeu Angry Birds, il sera nommé flyingTurtles.
+Lors de ce projet nous allons développer un jeu en C++ basé sur le jeu Angry
+ Birds, il sera nommé flyingTurtles.
  Ce jeu se base sur la mécanique car assimilé à un lancer de balle sans
  frottements dans un premier temps puis avec des effets tels que les intempéries
  et donc des frottements et éventuellement des masses variables selon les
@@ -221,6 +220,13 @@ fancyfoot[LE,RO]{
 thepage}
 \end_layout
 
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
 \end_inset
 
 
@@ -248,29 +254,17 @@ on considère les constantes m(la masse de la tortue), la constante de gravité
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newpage
-\end_layout
-
-\end_inset
-
- On a donc la situation initiale de base suivante : 
+On a donc la situation initiale de base suivante : 
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/mvt balle sans frottement.jpg
+	filename Images/balleQuiBougeSansFrottements
 	scale 40
 
 \end_inset
@@ -294,17 +288,10 @@ Conditions initiales d'un lancer deballe
 
 En utilisant le Principe Fondamental de la Dynamique, on a donc :
 \begin_inset Formula 
-\[
-m\frac{d^{2}x}{dt^{2}}=0
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-m\frac{d^{2}y}{dt^{2}}=-mg
-\]
+\begin{eqnarray}
+m\frac{d^{2}x}{dt^{2}} & = & 0\\
+m\frac{d^{2}y}{dt^{2}} & = & -mg
+\end{eqnarray}
 
 \end_inset
 
@@ -314,20 +301,10 @@ en intégrant par rapport au temps et par les conditions initiales, on a
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\frac{dx}{dt}=v_{0}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\frac{dy}{dt}=-gt+v_{0}
-\]
+\begin{eqnarray}
+\frac{dx}{dt} & = & v_{0}\\
+\frac{dy}{dt} & = & -gt+v_{0}
+\end{eqnarray}
 
 \end_inset
 
@@ -336,20 +313,10 @@ Et finalement, en re-intégrant, on obtient :
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-x=v_{0}.t.cos(\text{\theta})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-y=y_{0}-\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
-\]
+\begin{eqnarray}
+x & = & v_{0}.t.cos(\text{\theta})\\
+y & = & y_{0}-\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
+\end{eqnarray}
 
 \end_inset
 
@@ -371,27 +338,13 @@ Cas d'un lancer avec frottements :
 \begin_layout Standard
 On applique donc à nouveau le PFD, on a : 
 \begin_inset Formula 
-\[
-\frac{d^{2}x}{dt^{2}}+\frac{k}{m}.\frac{dx}{dt}=0
-\]
+\begin{eqnarray}
+\frac{d^{2}x}{dt^{2}}+\frac{k}{m}.\frac{dx}{dt} & = & 0\\
+\frac{d^{2}y}{dt^{2}}+\frac{k}{m}.\frac{dy}{dt} & = & -g
+\end{eqnarray}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\frac{d^{2}y}{dt^{2}}+\frac{k}{m}.\frac{dy}{dt}=-g
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 En résolvant l'équation différentielle et en intégrant le résultat, on obtient
  le résultat suivant en posant 
 \begin_inset Formula $\tau=\frac{m}{k}$
@@ -402,20 +355,10 @@ En résolvant l'équation différentielle et en intégrant le résultat, on obti
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-x=\tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-y=y_{0}+\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
-\]
+\begin{eqnarray}
+x & = & \tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))\\
+y & = & y_{0}+\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
+\end{eqnarray}
 
 \end_inset
 

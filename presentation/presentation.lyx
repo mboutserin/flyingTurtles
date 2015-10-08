@@ -258,6 +258,7 @@ on considère les constantes m(la masse de la tortue), la constante de gravité
 \end_layout
 
 \begin_layout Standard
+\align left
 On a donc la situation initiale de base suivante : 
 \begin_inset Float figure
 placement H
@@ -312,6 +313,24 @@ en intégrant par rapport au temps et par les conditions initiales, on a
 
 \end_inset
 
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
 Et finalement, en re-intégrant, on obtient :
 \end_layout
 

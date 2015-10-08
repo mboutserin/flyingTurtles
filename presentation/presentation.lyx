@@ -414,7 +414,7 @@ x=\tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))
 \begin_layout Standard
 \begin_inset Formula 
 \[
-y=\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
+y=y_{0}+\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
 \]
 
 \end_inset

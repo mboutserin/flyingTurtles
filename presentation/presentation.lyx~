@@ -423,7 +423,7 @@ y=\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
 \end_layout
 
 \begin_layout Part
-Ajout d'un ou plusieurs rebonds
+Glissade de la tortue après arrivée en y=0
 \end_layout
 
 \begin_layout Part

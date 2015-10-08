@@ -15,6 +15,28 @@ using namespace std;
 
 const double g = 9.81;
 
+double *sansFrottement(double v0, double thetarad, double t)
+{
+    double x,y;
+    x = v0*cos(thetarad)*t/1000;
+    y = 10-g*t*t/(2*1000*1000)+v0*sin(thetarad)*t/1000;
+    double *u = new double[2];
+    u[0] = x;
+    u[1] = y;
+    return u;
+}
+
+double *avecFrottement(double v0, double thetarad, double t)
+{
+    double x,y;
+    x = 3*v0*cos(thetarad)*(1-exp(-t/3000));
+    y = 10-g*t*3/1000+3*(v0*sin(thetarad)+g*3)*(1-exp(-t/3000));
+    double *u = new double[2];
+    u[0] = x;
+    u[1] = y;
+    return u;
+}
+
 int main(int argc, char **argv)
 {
     //  Déclaration içi seulement des variables de départ pour lancer la boule :
@@ -26,7 +48,7 @@ int main(int argc, char **argv)
     double v0,theta0,thetarad,xv,yv;
 
     //  Déclaration de la position
-    double x,y;
+    double x,y,y1;
 
     //  Déclaration des variables temporelles
     double t;
@@ -62,18 +84,17 @@ int main(int argc, char **argv)
     l->SetLineColor(kBlue);
     l->Draw();
 
-    while(y>0)
+    while(y1>0)
     {
-        x = v0*cos(thetarad)*t/1000;
-        y = 10-g*t*t/(2*1000*1000)+v0*cos(thetarad)*t/1000;
+        double *coord = sansFrottement(v0,thetarad,t);
         t += dt;
-        balle.SetX1(x);
-        balle.SetY1(y);
+        y1 = coord[1];
+        balle.SetX1(coord[0]);
+        balle.SetY1(coord[1]);
         balle.Draw();
 
-        this_thread::sleep_for(chrono::milliseconds{dt}); // attend dt millisecondes
-
-        c.Update();
+        this_thread::sleep_for(chrono::milliseconds{dt});   // attend dt millisecondes
+        c.Update();                                         // mise à jour de la fenêtre c
     }
 
     c.Update();

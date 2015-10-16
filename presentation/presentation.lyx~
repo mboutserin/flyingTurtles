@@ -127,7 +127,7 @@ M.
 \end_layout
 
 \begin_layout Date
-6 octobre 2015
+16 octobre 2015
 \end_layout
 
 \begin_layout Abstract
@@ -327,10 +327,9 @@ newpage
 \end_inset
 
 
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
-\align left
 Et finalement, en re-intégrant, on obtient :
 \end_layout
 
@@ -420,6 +419,47 @@ x & = & \tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))\\
 y & = & y_{0}+\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
 \end{eqnarray}
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Les Rebonds après la trajectoir parabolique de base
+\end_layout
+
+\begin_layout Standard
+Lors d'un choc entre deux objets, il y a une perte d'énergie liée à leur
+ déformations.
+ En utilisant une loi liée à Newton en disant que le rapport des vitesses
+ relatives après et avant le choc est égal à -e 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:rapport des vitesses relatives"
+
+\end_inset
+
+ (le facteur e est le coefficient de restitution).
+ On obtient le coefficient e en prenant la racine du rapport de la hauteur
+ du bon actuel sur la hauteur du bon précédent.
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Obtention de e"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray}
+\frac{v_{aprèschoc}}{v_{avantchoc}} & = & -e\label{eq:rapport des vitesses relatives}\\
+\sqrt[2]{\frac{h_{n}}{h_{n-1}}} & = & e\label{eq:Obtention de e}
+\end{eqnarray}
+
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 

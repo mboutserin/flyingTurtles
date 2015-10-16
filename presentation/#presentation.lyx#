@@ -425,11 +425,11 @@ y & = & y_{0}+\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\
 \end_layout
 
 \begin_layout Part
-Les Rebonds après la trajectoir parabolique de base
+Les rebonds après la trajectoire parabolique de base
 \end_layout
 
 \begin_layout Standard
-Lors d'un choc entre deux objets, il y a une perte d'énergie liée à leur
+(Lors d'un choc entre deux objets, il y a une perte d'énergie liée à leur
  déformations.
  En utilisant une loi liée à Newton en disant que le rapport des vitesses
  relatives après et avant le choc est égal à -e 
@@ -467,32 +467,47 @@ On garde donc la tortue de masse m qui arrive avec une vitesse
 \end_inset
 
  près du sol à la fin de notre première trajectoire.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\emph on
-\bar under
-Chute initiale :
-\emph default
-\bar default
- on se place dans le cas où l'on a des frottements et on se sert des équations
- 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:equationx"
-
+ )
+\begin_inset Newline newline
 \end_inset
 
- 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:trajectoirey"
 
+\begin_inset Newline newline
 \end_inset
 
-, d'après la loi de Newton on a donc 
+
+\begin_inset Newline newline
+\end_inset
+
+Lors de la phase de rebond de la tortue, on considère que la composante
+ 
+\begin_inset Formula $v_{x}$
+\end_inset
+
+ reste constante et que seule la composante 
+\begin_inset Formula $v_{y}$
+\end_inset
+
+ subit des changements du au rebond sur le sol.
+ Les frottements dues au sol sont négligés lors de la phase de rebond afin
+ de faciliter l'approche.
+\begin_inset Newline newline
+\end_inset
+
+On a donc créé un tableau des valeurs des composantes de 
+\begin_inset Formula $v_{x}$
+\end_inset
+
+ et de 
+\begin_inset Formula $v_{y}$
+\end_inset
+
+ afin de récupérer la dernière valeur de la composante 
+\begin_inset Formula $v_{y}$
+\end_inset
+
+ .
+ En se servant de la dernière compo
 \end_layout
 
 \begin_layout Part

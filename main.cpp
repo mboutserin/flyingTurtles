@@ -39,14 +39,6 @@ double *avecFrottement(double v0, double thetarad, double t, double tau)
 
 int main(int argc, char **argv)
 {
-    //  Création du menu
-    int choix;
-    cout << "Bienvenue dans le menu de flyingTurtles !!" << endl;
-    cout << endl << "Choisissez votre mode !" << endl;
-    cout << "1) Lancer simple d'une tortue sans frottement du à l'air" << endl;
-    cout << "2) Lancer simple d'une tortue avec frottement du à l'aire ou à un fluide" << endl;
-    cin >> choix;
-
     //  Déclaration içi seulement des variables de départ pour lancer la boule :
     //  - v0 : vitesse initial
     //  - theta0 : angle initial en degré entre l'axe x et v0
@@ -65,8 +57,34 @@ int main(int argc, char **argv)
     //  Déclaration de la position
     double x,y,y1;
 
+
+    //  initialisation de root
+    TApplication theApp("App", &argc, argv);
+    //  création de la fenêtre
+    TCanvas c("c","fenetre",400,400);
+    //  coordonnées de la fenetre
+    c.Range(0,0,300,300);
+
+
+
     while(1)
     {
+        //  dessin de la balle à t=0
+        TEllipse balle(10,10,5);
+        balle.SetFillColor(kBlack);
+        balle.Draw();
+        //  dessin du vecteur v0
+        TArrow *l=new TArrow(10,10,xv,yv); // x1,y1,x2,y2
+        l->SetLineColor(kBlue);
+        l->Draw();
+
+        //  Création du menu
+        int choix;
+        cout << "Bienvenue dans le menu de flyingTurtles !!" << endl;
+        cout << endl << "Choisissez votre mode !" << endl;
+        cout << "1) Lancer simple d'une tortue sans frottement du à l'air" << endl;
+        cout << "2) Lancer simple d'une tortue avec frottement du à l'air ou à un fluide" << endl;
+        cin >> choix;
 
         if(choix==1)
         {
@@ -80,23 +98,23 @@ int main(int argc, char **argv)
             yv = v0*sin(thetarad);
 
             //  initialisation de root
-            TApplication theApp("App", &argc, argv);
+            //TApplication theApp("App", &argc, argv);
 
             //  création de la fenêtre
-            TCanvas c("c","fenetre",400,400);
+            //TCanvas c("c","fenetre",400,400);
 
             //  coordonnées de la fenetre
-            c.Range(0,0,300,300);
+            //c.Range(0,0,300,300);
 
             //  dessin de la balle à t=0
-            TEllipse balle(10,10,5);
+            /*TEllipse balle(10,10,5);
             balle.SetFillColor(kBlack);
             balle.Draw();
 
             //  dessin du vecteur v0
             TArrow *l=new TArrow(10,10,xv,yv); // x1,y1,x2,y2
             l->SetLineColor(kBlue);
-            l->Draw();
+            l->Draw();*/
 
             while(y1>0)
             {
@@ -111,8 +129,7 @@ int main(int argc, char **argv)
                 c.Update();                                         // mise à jour de la fenêtre c
             }
 
-            c.Update();
-            theApp.Run();
+            c.Closed();
         }
 
         if(choix==2)
@@ -129,10 +146,10 @@ int main(int argc, char **argv)
             yv = v0*sin(thetarad);
 
             //  initialisation de root
-            TApplication theApp("App", &argc, argv);
+            //  TApplication theApp("App", &argc, argv);
 
             //  création de la fenêtre
-            TCanvas c("c","fenetre",400,400);
+            /*TCanvas c("c","fenetre",400,400);
 
             //  coordonnées de la fenetre
             c.Range(0,0,300,300);
@@ -145,7 +162,7 @@ int main(int argc, char **argv)
             //  dessin du vecteur v0
             TArrow *l=new TArrow(10,10,xv,yv); // x1,y1,x2,y2
             l->SetLineColor(kBlue);
-            l->Draw();
+            l->Draw();*/
 
             while(y1>0)
             {
@@ -160,8 +177,8 @@ int main(int argc, char **argv)
                 c.Update();                                           // mise à jour de la fenêtre c
             }
 
-            c.Update();
-            theApp.Run();
+            c.Close();
+            //Close(TApplication *theApp);
         }
 
     }

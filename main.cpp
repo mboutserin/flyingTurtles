@@ -19,7 +19,7 @@ double *sansFrottement(double v0, double thetarad, double t)
 {
     double x,y;
     x = v0*cos(thetarad)*t/1000;
-    y = 10-g*t*t/(2*1000*1000)+v0*sin(thetarad)*t/1000;
+    y = -g*t*t/(2*1000*1000)+v0*sin(thetarad)*t/1000;
     double *u = new double[2];
     u[0] = x;
     u[1] = y;
@@ -30,7 +30,7 @@ double *avecFrottement(double v0, double thetarad, double t, double tau)
 {
     double x,y;
     x = tau*v0*cos(thetarad)*(1-exp(-t/(1000*tau)));
-    y = 10-g*t*tau/1000+tau*(v0*sin(thetarad)+g*tau)*(1-exp(-t/(tau*1000)));
+    y = -g*t*tau/1000+tau*(v0*sin(thetarad)+g*tau)*(1-exp(-t/(tau*1000)));
     double *u = new double[2];
     u[0] = x;
     u[1] = y;
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     //  - tau : coefficient de frottement (rapport m/k)
     //  - xv = v0.cos(theta0)
     //  - yv = v0.sin(theta0)
-    double v0,theta0,thetarad,tau,xv,yv;
+    double v0,theta0,thetarad,tau,xt,yt;
 
     //  Déclaration des variables temporelles
     double t;
@@ -57,6 +57,8 @@ int main(int argc, char **argv)
     //  Déclaration de la position
     double x,y,y1;
 
+    //  Déclaration des vitesses v1
+    double v1,v1x,v1y,v1ynew;
 
     //  initialisation de root
     TApplication theApp("App", &argc, argv);
@@ -65,8 +67,6 @@ int main(int argc, char **argv)
     //  coordonnées de la fenetre
     c.Range(0,0,300,300);
 
-
-
     while(1)
     {
         //  dessin de la balle à t=0
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
         balle.SetFillColor(kBlack);
         balle.Draw();
         //  dessin du vecteur v0
-        TArrow *l=new TArrow(10,10,xv,yv); // x1,y1,x2,y2
+        TArrow *l=new TArrow(10,10,xt,yt); // x1,y1,x2,y2
         l->SetLineColor(kBlue);
         l->Draw();
 
@@ -94,8 +94,8 @@ int main(int argc, char **argv)
             cin >> theta0;
 
             thetarad = theta0*2*M_PI/360;
-            xv = v0*cos(thetarad);
-            yv = v0*sin(thetarad);
+            xt = v0*cos(thetarad);
+            yt = v0*sin(thetarad);
 
             //  initialisation de root
             //TApplication theApp("App", &argc, argv);
@@ -115,15 +115,32 @@ int main(int argc, char **argv)
             TArrow *l=new TArrow(10,10,xv,yv); // x1,y1,x2,y2
             l->SetLineColor(kBlue);
             l->Draw();*/
+            double precedente[2];
 
-            while(y1>0)
+            while(1)
             {
                 double *coord = sansFrottement(v0,thetarad,t);
+
+                if(y1<0)
+                {
+                    v0 = 0.9*sqrt((balle.GetX1()- precedente[0])*(balle.GetX1()- precedente[0])+(balle.GetY1()- precedente[1])*(balle.GetY1()- precedente[1]));
+
+                    //v1x = v0*cos(thetarad);
+                    //v1y = -v0*sin(thetarad);
+                    v0 = sqrt(v1x*v1x+v1y*v1y);
+
+                    coord = sansFrottement(v0,thetarad,t);
+                }
+
                 t += dt;
                 y1 = coord[1];
                 balle.SetX1(coord[0]);
                 balle.SetY1(coord[1]);
                 balle.Draw();
+
+
+                precedente[0] = coord[0];
+                precedente[1] = coord[1];
 
                 this_thread::sleep_for(chrono::milliseconds{dt/2});   // attend dt millisecondes
                 c.Update();                                         // mise à jour de la fenêtre c
@@ -142,8 +159,8 @@ int main(int argc, char **argv)
             cin >> tau;
 
             thetarad = theta0*2*M_PI/360;
-            xv = v0*cos(thetarad);
-            yv = v0*sin(thetarad);
+            xt = v0*cos(thetarad);
+            yt = v0*sin(thetarad);
 
             //  initialisation de root
             //  TApplication theApp("App", &argc, argv);

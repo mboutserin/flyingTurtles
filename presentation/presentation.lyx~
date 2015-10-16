@@ -326,18 +326,14 @@ newpage
 
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
-Et finalement, en re-intégrant, on obtient :
+ Et finalement, en re-intégrant, on obtient :
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
 x & = & v_{0}.t.cos(\text{\theta})\\
-y & = & y_{0}-\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
+y & = & -\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
 \end{eqnarray}
 
 \end_inset
@@ -416,7 +412,7 @@ En résolvant l'équation différentielle et en intégrant le résultat, on obti
 \begin_inset Formula 
 \begin{eqnarray}
 x & = & \tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))\label{eq:equationx}\\
-y & = & y_{0}+\tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\label{eq:trajectoirey}
+y & = & \tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\label{eq:trajectoirey}
 \end{eqnarray}
 
 \end_inset
@@ -491,6 +487,40 @@ Lors de la phase de rebond de la tortue, on considère que la composante
  subit des changements du au rebond sur le sol.
  Les frottements dues au sol sont négligés lors de la phase de rebond afin
  de faciliter l'approche.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+On a donc créé un tableau des valeurs des composantes de 
+\begin_inset Formula $v_{x}$
+\end_inset
+
+ et de 
+\begin_inset Formula $v_{y}$
+\end_inset
+
+ afin de récupérer la dernière valeur de la composante 
+\begin_inset Formula $v_{y}$
+\end_inset
+
+ .
+ En se servant de la dernière composante on peut donc faire une boucle pour
+ faire les rebonds en modifiant les trajectoires qui seront :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+x & = & \tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))\\
+y & = & \tau.((0,1)^{n}.v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
+\end{eqnarray}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part

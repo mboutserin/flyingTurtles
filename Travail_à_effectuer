@@ -1,0 +1,13 @@
+Travail à réaliser sur flyingTurtles : 
+- Chercher la position de la souris pour ce rapprocher du jeu "Angry Birds"
+- Créer un ennemi aléatoirement dans une zone défini préalablement
+- Modéliser le rebond d'une balle sur un mur
+- Modéliser le vent et la pluie d'une manière définie puis aléatoire
+- Dessin des vecteurs vents et pluies
+- Création d'un mode autonome : choix de la surface automatique (coefficient de rebond de la balle)
+				choix aléatoires de la force du vent et de la pluie
+
+
+Travail à demander à Fred :
+- Comment se servir de la souris (aller chercher la position de la souris)
+- Comment gérer se problème d'ouverture et fermeture de fenêtre pour gérer les différents modes présent dans le menu

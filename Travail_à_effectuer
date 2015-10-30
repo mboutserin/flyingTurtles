@@ -3,9 +3,12 @@ Travail à réaliser sur flyingTurtles :
 - Modéliser le vent et la pluie d'une manière définie puis aléatoire
 - Dessin des vecteurs vents et pluies
 - Création d'un mode autonome : choix de la surface automatique (coefficient de rebond de la balle)
+					--> Herbe
+					--> Béton
+					--> Terre ou boue
+					-->
 				choix aléatoires de la force du vent et de la pluie
 
 
 Travail à demander à Fred :
-- Comment se servir de la souris (aller chercher la position de la souris)
 - Comment gérer ce problème d'ouverture et fermeture de fenêtre pour gérer les différents modes présent dans le menu

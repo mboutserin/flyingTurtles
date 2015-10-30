@@ -25,6 +25,11 @@ int Nshots=10;
 double x0;
 double coeffRebond;
 int count=1;
+//  Déclaration des variables Ennemi
+int positionEnnemiX,positionEnnemiY;
+int tailleEnnemiX,tailleEnnemiY;
+//  Déclaration des variables Sol
+int typeSol,x;
 
 
 
@@ -65,12 +70,7 @@ class Fenetre: public TCanvas
     double t;
     int dt;
     t = 0;
-    dt = 100;       //  dt en ms
-
-    //  Déclaration des variables Ennemi
-    int positionEnnemiX,positionEnnemiY;
-    int tailleEnnemiX,tailleEnnemiY;
-
+    dt = 10;       //  dt en ms
 
 
     //  dessin de la balle à t=0
@@ -99,7 +99,8 @@ class Fenetre: public TCanvas
 
             //  dessin du vecteur v0
             TArrow *vecteurV0=new TArrow(0,0,x,y);
-            vecteurV0->SetLineColor(kBlue);
+            vecteurV0->SetLineColor(kBlack);
+            vecteurV0->SetLineWidth(2);
             vecteurV0->Draw();
             Update();         // mise à jour de la fenêtre c
 
@@ -110,7 +111,7 @@ class Fenetre: public TCanvas
             y1 = coord[1];
             x0 = 0;
 
-            while(x1<300)
+            while(x1 < 300)
             {
                 if(y1 < 0)
                 {
@@ -120,14 +121,12 @@ class Fenetre: public TCanvas
 
                 }
 
-                if((positionEnnemiX-tailleEnnemiX) < x1   &&   (positionEnnemiY-tailleEnnemiY) < y1)
+                /*if((positionEnnemiX-tailleEnnemiX<x1<tailleEnnemiX)||(positionEnnemiY-tailleEnnemiY<y1<tailleEnnemiY))
                 {
-                    if(x1 < positionEnnemiX   &&   y1 < positionEnnemiY)
-                    {
-                        cout << "Beau gosse !!" << endl;
-                        break;
-                    }
-                }
+                    cout << "Beau gosse" << endl;
+                    break;
+                }*/
+
 
                 coord = sansFrottement(v0,thetarad,t,x0);
                 t += dt;
@@ -137,15 +136,15 @@ class Fenetre: public TCanvas
                 balle.SetY1(coord[1]);
                 balle.Draw();
 
-                this_thread::sleep_for(chrono::milliseconds{dt/2});   // attend dt millisecondes
+                this_thread::sleep_for(chrono::milliseconds{dt/4});   // attend dt millisecondes
                 Update();
             }
 
              Update();
 
 
-        if(count==Nshots-1)      cout<<"Attention, c'est votre dernier tire. A vous!"<<endl;
-        if(count<Nshots-1)       cout<<"A vous!"<<endl;
+        if(count == Nshots-1)      cout<<"Attention, c'est votre dernier tire. A vous!"<<endl;
+        if(count < Nshots-1)       cout<<"A vous!"<<endl;
         count++;
         }//end if (event==1)
 
@@ -165,9 +164,6 @@ int main(int argc, char **argv)
     cout << "****************** Bienvenue dans le menu de flyingTurtles !! ******************" << endl;
     cout << "********************************************************************************" << endl;
 
-    cout << "Rentrez le coefficient de rebond ?" << endl;
-    cin >> coeffRebond;
-
     cout << endl << "Combien de tortues voulez-vous jeter ?" <<endl;
     cin >> Nshots;
 
@@ -179,30 +175,69 @@ int main(int argc, char **argv)
     //  coordonnées de la fenetre
     c.Range(0,0,300,300);
 
+    //  Données concernant le choix du sol choisis aléatoirement
+    //  typeSol = 0 --> herbe
+    //  typeSol = 1 --> béton
+    //  typeSol = 2 --> boue
+    //  La boue et le béton se dessine après l'ennemi car l'ennemi ne peut écraser le béton ou la boue (simple soucis de logique)
+    srand(time(NULL)); // initialise le hasard (1 seule fois)
+    int S = 2;
+    typeSol = rand()%(S+1);
+
+    if(typeSol == 0)
+    {
+        coeffRebond = 0.6;
+        for(x = 0 ; x < 300 ; x += 5)
+        {
+        TLine *herbe=new TLine(x,0,x+1,5); // x1,y1,x2,y2
+        herbe->SetLineColor(kGreen+1);
+        herbe->SetLineWidth(2);
+        herbe->Draw();
+        }
+    }
+
     //  Données concernant l'ennemi généré aléatoirement dans une zone défini
     //  150 < x < 300   et   0 < y < 100
     //  De taille 10 < tailleX < 50  et  10 < tailleY < 30
-    srand(time(NULL)); // initialise le hasard (1 seule fois)
 
     int A = 150;
-    int positionEnnemiX = 150 + rand()%(A+1); // entier aléatoire entre 0 et A compris.
+    positionEnnemiX = 150 + rand()%(A+1); // entier aléatoire entre 150 et 150 + A compris.
 
-    // initialise le hasard (1 seule fois)
     int B = 100;
-    int positionEnnemiY = rand()%(B+1); // entier aléatoire entre 0 et B compris.
+    positionEnnemiY = rand()%(B+1); // entier aléatoire entre 0 et B compris.
 
-    // initialise le hasard (1 seule fois)
     int C = 40;
-    int tailleEnnemiX = 10 + rand()%(C+1); // entier aléatoire entre 0 et 150 compris.
+    tailleEnnemiX = 10 + rand()%(C+1); // entier aléatoire entre 10 et 10 + C compris.
 
-    // initialise le hasard (1 seule fois)
     int D = 20;
-    int tailleEnnemiY = 10 + rand()%(D+1); // entier aléatoire entre 0 et D compris.
+    tailleEnnemiY = 10 + rand()%(D+1); // entier aléatoire entre 10 et 10 + D compris.
 
-    //Dessin de l'ennemi
+    //  Dessin de l'ennemi
     TBox *Ennemi=new TBox(positionEnnemiX-tailleEnnemiX,positionEnnemiY-tailleEnnemiY,positionEnnemiX,positionEnnemiY);
-    Ennemi->SetFillColor(kGreen);
+    Ennemi->SetFillColor(kRed);
     Ennemi->Draw();
+
+
+    if(typeSol == 1)
+    {
+        coeffRebond = 0.4;
+        for(x = 0 ; x < 300 ; x += 6)
+        {
+            TEllipse *boue= new TEllipse(x,0,3); // (centre (x,y) et rayon r
+            boue->SetFillColor(kRed+2);
+            boue->Draw();
+        }
+    }
+    if(typeSol == 2)
+    {
+        coeffRebond = 0.95;
+        // on precise les coins bas-gauche (x1,y1) et haut droit (x2,y2) :
+        TBox *beton=new TBox(0,0,300,2);
+        beton->SetFillColor(kGray+2);
+        beton->Draw();
+    }
+
+
     c.Update();
 
     theApp.Run();

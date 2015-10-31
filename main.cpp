@@ -37,7 +37,7 @@ int typeSol,x;
 
 
 
-//  Equation paramétrique du mouvement de la tortue sans frottements du à l'aire
+//  Equation paramétrique du mouvement de la tortue sans frottements du à l'air
 double *sansFrottement(double v0, double thetarad, double t, double x0)
 {
     double x,y;
@@ -192,13 +192,13 @@ int main(int argc, char **argv)
     //  150 < x < 300   et   0 < y < 100
     //  De taille 10 < tailleX < 50  et  10 < tailleY < 30
     int A = 150;
-    positionEnnemiX = 150 + rand()%(A+1); // entier aléatoire entre 150 et 150 + A compris.
+    positionEnnemiX = 150 + rand()%(A+1); 		// entier aléatoire entre 150 et 150 + A compris.
     int B = 100;
-    positionEnnemiY = rand()%(B+1); // entier aléatoire entre 0 et B compris.
+    positionEnnemiY = rand()%(B+1); 			// entier aléatoire entre 0 et B compris.
     int C = 40;
-    tailleEnnemiX = 10 + rand()%(C+1); // entier aléatoire entre 10 et 10 + C compris.
+    tailleEnnemiX = 10 + rand()%(C+1);			// entier aléatoire entre 10 et 10 + C compris.
     int D = 20;
-    tailleEnnemiY = 10 + rand()%(D+1); // entier aléatoire entre 10 et 10 + D compris.
+    tailleEnnemiY = 10 + rand()%(D+1); 			// entier aléatoire entre 10 et 10 + D compris.
 
     //  Dessin de l'ennemi
     TBox *Ennemi=new TBox(positionEnnemiX-tailleEnnemiX,positionEnnemiY-tailleEnnemiY,positionEnnemiX,positionEnnemiY);
@@ -211,7 +211,7 @@ int main(int argc, char **argv)
         coeffRebond = 0.4;
         for(x = 0 ; x < 300 ; x += 6)
         {
-            TEllipse *boue= new TEllipse(x,0,3);    // Centre (x,y) et rayon r
+            TEllipse *boue= new TEllipse(x,0,3);    	// Centre (x,y) et rayon r
             boue->SetFillColor(kRed+2);
             boue->Draw();
         }
@@ -219,12 +219,12 @@ int main(int argc, char **argv)
     if(typeSol == 2)
     {
         coeffRebond = 0.95;
-        TBox *beton=new TBox(0,0,300,2);            // On précise les coins bas-gauche (x1,y1) et haut droit (x2,y2)
+        TBox *beton=new TBox(0,0,300,2);            	// On précise les coins bas-gauche (x1,y1) et haut droit (x2,y2)
         beton->SetFillColor(kGray+2);
         beton->Draw();
     }
 
-    c.Update();                                     // Dessin de l'herbe, ennemi, béton, boue
+    c.Update();                                     	// Dessin de l'herbe, ennemi, béton, boue
 
     theApp.Run();
 

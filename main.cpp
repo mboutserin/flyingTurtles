@@ -5,6 +5,9 @@
 #include <iostream>
 #include <time.h>
 #include <math.h>
+#include <thread>
+#include <chrono>
+#include <fstream>
 #include <stdlib.h>
 #include <TBox.h>
 #include <TApplication.h>
@@ -13,9 +16,6 @@
 #include <TPoints.h>
 #include <TEllipse.h>
 #include <TArrow.h>
-#include <thread>
-#include <chrono>
-#include <fstream>
 #include <TMarker.h>
 #include <TSystem.h>
 
@@ -34,6 +34,8 @@ int positionEnnemiX,positionEnnemiY;
 int tailleEnnemiX,tailleEnnemiY;
 //  Déclaration des variables Sol
 int typeSol,x;
+//  Déclaration des variables vent
+int vitesseVent;
 
 
 
@@ -41,8 +43,8 @@ int typeSol,x;
 double *sansFrottement(double v0, double thetarad, double t, double x0)
 {
     double x,y;
-    x = v0*cos(thetarad)*t/1000+x0;
-    y = -g*t*t/(2*1000*1000)+v0*sin(thetarad)*t/1000;
+    x = x0 + v0*cos(thetarad)*t/1000 + vitesseVent*t/1000;
+    y = -g*t*t/(2*1000*1000) + v0*sin(thetarad)*t/1000;
     double *u = new double[2];
     u[0] = x;
     u[1] = y;
@@ -90,6 +92,13 @@ class Fenetre: public TCanvas
             thetarad = atan((y)/(x));
             v0=sqrt(x*x+y*y);
 
+            if(v0 > 75)                        //  Vitesse limite v0 sinon jeu trop facile
+            {
+                v0 = 75;
+                x = v0*cos(thetarad);          //  Permet d'avoir le vecteur v0 correct
+                y = v0*sin(thetarad);
+            }
+
             //  Dessin du vecteur v0
             TArrow *vecteurV0=new TArrow(0,0,x,y);
             vecteurV0->SetLineColor(kBlack);
@@ -112,20 +121,19 @@ class Fenetre: public TCanvas
                     v0 *= coeffRebond;
                 }
 
-                /*if((positionEnnemiX-tailleEnnemiX<x1<tailleEnnemiX)||(positionEnnemiY-tailleEnnemiY<y1<tailleEnnemiY))        //  Si on touche l'ennemi on a gagné
+                /*if((positionEnnemiX-tailleEnnemiX<x1<tailleEnnemiX)&&(positionEnnemiY-tailleEnnemiY<y1<tailleEnnemiY))        //  Si on touche l'ennemi on a gagné
                 {
                     cout << "Beau gosse" << endl;
                     break;
                 }*/
 
-
-                coord = sansFrottement(v0,thetarad,t,x0);       //  |
-                t += dt;                                        //  |
-                x1 = coord[0];                                  //  |
-                y1 = coord[1];                                  //   >  Mise à jour de la position et dessin de la balle
-                balle.SetX1(coord[0]);                          //  |
-                balle.SetY1(coord[1]);                          //  |
-                balle.Draw();                                   //  |
+                coord = sansFrottement(v0,thetarad,t,x0);           //  |
+                t += dt;                                            //  |
+                x1 = coord[0];                                      //  |
+                y1 = coord[1];                                      //   >  Mise à jour de la position et dessin de la balle
+                balle.SetX1(coord[0]);                              //  |
+                balle.SetY1(coord[1]);                              //  |
+                balle.Draw();                                       //  |
 
                 this_thread::sleep_for(chrono::milliseconds{dt/4});             // attend dt/4 millisecondes
                 Update();                                                       //  Mise à jour de la fenêtre c (dessin de la balle)
@@ -171,7 +179,7 @@ int main(int argc, char **argv)
     //  typeSol = 0 --> herbe
     //  typeSol = 1 --> béton
     //  typeSol = 2 --> boue
-    //  La boue et le béton se dessine après l'ennemi car l'ennemi ne peut écraser le béton ou la boue (simple soucis de logique)
+    //  La boue et le béton se dessine après l'ennemi car l'ennemi ne peut écraser le béton (simple soucis de logique)
     srand(time(NULL)); // initialise le hasard (1 seule fois)
     int S = 2;
     typeSol = rand()%(S+1);
@@ -185,6 +193,16 @@ int main(int argc, char **argv)
         herbe->SetLineColor(kGreen+1);
         herbe->SetLineWidth(2);
         herbe->Draw();
+        }
+    }
+    if(typeSol == 1)
+    {
+        coeffRebond = 0.4;
+        for(x = 0 ; x < 300 ; x += 6)
+        {
+            TEllipse *boue= new TEllipse(x,0,3);    	// Centre (x,y) et rayon r
+            boue->SetFillColor(kRed+2);
+            boue->Draw();
         }
     }
 
@@ -205,17 +223,6 @@ int main(int argc, char **argv)
     Ennemi->SetFillColor(kRed);
     Ennemi->Draw();
 
-
-    if(typeSol == 1)
-    {
-        coeffRebond = 0.4;
-        for(x = 0 ; x < 300 ; x += 6)
-        {
-            TEllipse *boue= new TEllipse(x,0,3);    	// Centre (x,y) et rayon r
-            boue->SetFillColor(kRed+2);
-            boue->Draw();
-        }
-    }
     if(typeSol == 2)
     {
         coeffRebond = 0.95;
@@ -224,7 +231,14 @@ int main(int argc, char **argv)
         beton->Draw();
     }
 
-    c.Update();                                     	// Dessin de l'herbe, ennemi, béton, boue
+    //  Données concernant le vent
+    int V = 50;
+    vitesseVent = rand()%(V+1) - 25; 	            	// entier aléatoire entre -25 et +25 compris.
+    TArrow *vecteurVent=new TArrow(245,290,245 + 2*vitesseVent,290);
+    vecteurVent->SetLineColor(kBlack);
+    vecteurVent->Draw();
+
+    c.Update();                                     	// Dessin de l'herbe, ennemi, béton, boue, vent
 
     theApp.Run();
 

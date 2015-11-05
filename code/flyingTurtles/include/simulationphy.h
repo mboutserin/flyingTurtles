@@ -1,6 +1,7 @@
 #ifndef SIMULATIONPHY_H
 #define SIMULATIONPHY_H
 
+static const double Gravitation = 9.81;
 
 class SimulationPhy
 {
@@ -8,10 +9,9 @@ class SimulationPhy
         SimulationPhy();
         ~SimulationPhy();
 
-        double *sansFrottement(double v0, double thetarad, double t, double x0);
+        static double *sansFrottement(double v0, double thetarad, double t, double x0);
 
     private:
-        const double Gravitation = 9.81;
 };
 
 class Objet
@@ -22,7 +22,6 @@ class Objet
     private:
         double x;
         double y;
-        double masse;
         double v;
 };
 

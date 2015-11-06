@@ -9,6 +9,7 @@ using namespace arma;
 
 static double Gravitation = 9.81;
 
+
 class SimulationPhy
 {
     public:
@@ -17,6 +18,8 @@ class SimulationPhy
 
         static double *sansFrottement(double v0, double thetarad, double t, double x0);
         //double getGravitation();
+        double getVent();
+
         void bouger(Objet &objet, double delta_t);
 
     private:

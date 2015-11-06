@@ -3,13 +3,19 @@
 SimulationPhy::SimulationPhy()
 {
     gravitation=9.81; // m.s-2
-    vent = rand()%(50+1) - 25; //m/s
+    srand(time(NULL)); // initialise le hasard (1 seule fois)
+    vent = rand()%(30+1) - 15; //m/s
     coefRebond = 0.95; // niet
 }
 
 SimulationPhy::~SimulationPhy()
 {
     //dtor
+}
+
+double SimulationPhy::getVent()
+{
+    return vent;
 }
 
 double* SimulationPhy::sansFrottement(double v0, double thetarad, double t, double x0)
@@ -67,7 +73,7 @@ vec2 SimulationPhy::newton2(Objet &objet)
 
     acceleration(0) = -gravitation;
     //acceleration(1) = 0;
-    acceleration(1) = -vent;
+    acceleration(1) = vent;
 
     return acceleration;
 }

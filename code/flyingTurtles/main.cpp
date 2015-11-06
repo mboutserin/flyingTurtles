@@ -20,6 +20,7 @@
 #include <TSystem.h>
 #include "simulationphy.h"
 #include "objet.h"
+#include "enregistrement.h"
 
 using namespace std;
 
@@ -38,7 +39,7 @@ int typeSol,x;
 //  Déclaration des variables vent
 int vitesseVent;
 
-
+TArrow vecteurVent;
 
 
 
@@ -46,12 +47,16 @@ int vitesseVent;
 //============================== Ma Classe Fenetre ==============================
 class Fenetre: public TCanvas
 {
-    SimulationPhy simuLancerBalle = SimulationPhy();
+
 
     public:
+
+    SimulationPhy simuLancerBalle;
     // constructeur ......
-    Fenetre(TString name, TString title, Int_t ww, Int_t wh) : TCanvas(name,title,ww,wh)
-    { }
+    Fenetre(TString name, TString title, Int_t ww, Int_t wh, SimulationPhy &simu) : TCanvas(name,title,ww,wh)
+    {
+        simuLancerBalle = simu;
+    }
     //————————————— Cette fonction est appelle si la souris s'agitte —————————————
     void ExecuteEvent(Int_t event, Int_t px, Int_t py)
     {
@@ -112,8 +117,8 @@ class Fenetre: public TCanvas
             y1 = coord[1];
             x0 = 0;
 */
-//            while(x1 < 300)         //  Tant que on est pas sortie de la fenêtre (x > 300) on exécute
             while(tortue.getVitesse() > 3 && tortue.getVx() > 0 && tortue.getX() < 300)
+//            while(x1 < 300)        //  Tant que on est pas sortie de la fenêtre (x > 300) on exécute
             {
                 simuLancerBalle.bouger(tortue,dt);
 
@@ -121,7 +126,7 @@ class Fenetre: public TCanvas
                 balle.SetY1(tortue.getY());
                 balle.Draw();
 
-                cout << "x=" << tortue.getX() << " et y=" << tortue.getY() << endl;
+              //  cout << "x=" << tortue.getX() << " et y=" << tortue.getY() << endl;
  /*               if(y1 < 0)          //  Modélisation du rebond
                 {
                     t = 0;
@@ -177,16 +182,17 @@ int main(int argc, char **argv)
 
     cout << "CLIQUEZ avec la souris dans la fenêtre afin de faire voler les tortues." << endl;
 
+    SimulationPhy simuLancerBalle = SimulationPhy();
 
     //  Création de la fenêtre nommé c
-    Fenetre c("c","fenetre",400,400);
+    Fenetre c("c","fenetre",400,400, simuLancerBalle);
     //  Coordonnées de la fenetre
     c.Range(0,0,300,300);
 
     //  Données concernant le choix du sol choisis aléatoirement
     //  typeSol = 0 --> herbe
-    //  typeSol = 1 --> béton
-    //  typeSol = 2 --> boue
+    //  typeSol = 1 --> boue
+    //  typeSol = 2 --> béton
     //  La boue et le béton se dessine après l'ennemi car l'ennemi ne peut écraser le béton (simple soucis de logique)
     srand(time(NULL)); // initialise le hasard (1 seule fois)
     int S = 2;
@@ -239,12 +245,11 @@ int main(int argc, char **argv)
         beton->Draw();
     }
 
-    //  Données concernant le vent
-    int V = 50;
-    vitesseVent = rand()%(V+1) - 25; 	            	// entier aléatoire entre -25 et +25 compris.
-    TArrow *vecteurVent=new TArrow(245,290,245 + 2*vitesseVent,290);
-    vecteurVent->SetLineColor(kBlack);
-    vecteurVent->Draw();
+
+        //  Données concernant le vent            	// entier aléatoire entre -25 et +25 compris.
+    TArrow vecteurVent = TArrow(245,290,245 + 2*simuLancerBalle.getVent(),290);
+    vecteurVent.SetLineColor(kBlack);
+    vecteurVent.Draw();
 
     c.Update();                                     	// Dessin de l'herbe, ennemi, béton, boue, vent
 

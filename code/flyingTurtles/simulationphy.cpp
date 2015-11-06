@@ -30,9 +30,9 @@ double* SimulationPhy::sansFrottement(double v0, double thetarad, double t, doub
 }
 
 /**
- * méthode d'Euler
+ *  Méthode d'Euler
 
- * Pour le moment, on ne fait pas vraiment de bilan des forces
+ *  Pour le moment, on ne fait pas vraiment de bilan des forces
  *  on constate juste la force de réaction en y=0, le poid et le vent.
  *  Le vent est en outre considéré comme une force constante
  *  (un champ de potentiel constant donc)
@@ -61,11 +61,11 @@ void SimulationPhy::bouger(Objet &objet, double delta_t)
 }
 
 /**
-  * On ne fait pas ici la véritable somme des forces,
+  *  On ne fait pas ici la véritable somme des forces,
   *  on se contente du poid et du vent.
-  * Donc on a :
-  * -gravitation = ay
-  * vent = ax
+  *  Donc on a :
+  *  -gravitation = ay
+  *  vent = ax
  */
 vec2 SimulationPhy::newton2(Objet &objet)
 {

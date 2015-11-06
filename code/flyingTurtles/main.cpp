@@ -20,7 +20,6 @@
 #include <TSystem.h>
 #include "simulationphy.h"
 #include "objet.h"
-#include "enregistrement.h"
 
 using namespace std;
 

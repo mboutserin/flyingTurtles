@@ -4,6 +4,7 @@
 
 static double Gravitation = 9.81;
 
+
 class SimulationPhy
 {
     public:
@@ -14,6 +15,7 @@ class SimulationPhy
         //double getGravitation();
 
     private:
+        double CoeffRebond;
 };
 
 class Objet

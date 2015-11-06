@@ -169,8 +169,8 @@ int main(int argc, char **argv)
 
     //  Données concernant le choix du sol choisis aléatoirement
     //  typeSol = 0 --> herbe
-    //  typeSol = 1 --> béton
-    //  typeSol = 2 --> boue
+    //  typeSol = 1 --> boue
+    //  typeSol = 2 --> béton
     //  La boue et le béton se dessine après l'ennemi car l'ennemi ne peut écraser le béton (simple soucis de logique)
     srand(time(NULL)); // initialise le hasard (1 seule fois)
     int S = 2;

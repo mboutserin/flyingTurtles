@@ -418,6 +418,11 @@ y & = & \tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\label{
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+On décide par la suite de ne pas utiliser le cas avec frottements pour des
+ raisons pratiques conçernant le rebond.
 \end_layout
 
 \begin_layout Part
@@ -440,25 +445,16 @@ A chaques nouveaux rebonds, le temps t est donc réinitialisé afin de pouvoir
 \begin_inset Newline newline
 \end_inset
 
-On garde donc les équations 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:equationx"
-
+Afin de varier le 
+\begin_inset Quotes fld
 \end_inset
 
- et 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:trajectoirey"
-
+mode
+\begin_inset Quotes frd
 \end_inset
 
- avec un 
-\begin_inset Formula $v_{0}$
-\end_inset
-
- qui change pour chaque nouveau rebond et le t qui est réinitialisé.
+ de rebond, on met a disposition du joueur plusieurs sols différents (boueux,
+ bétonneux, herbeux) pour avoir différent coefficient de rebond.
 \end_layout
 
 \begin_layout Part
@@ -474,7 +470,9 @@ Ajout d'ennemis
 \end_layout
 
 \begin_layout Standard
-
+On donne une taille telle que 10<x<50 et 10<y<30, puis on lui donne un emplaceme
+nt aléatoire dans une partie de la fenêtre en faisant en sorte qu'il ne
+ soit pas a l'emplaçement de base de la tortue pour ne pas fausser la partie.
 \end_layout
 
 \end_body

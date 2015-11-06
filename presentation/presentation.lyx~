@@ -425,102 +425,40 @@ Les rebonds après la trajectoire parabolique de base
 \end_layout
 
 \begin_layout Standard
-(Lors d'un choc entre deux objets, il y a une perte d'énergie liée à leur
- déformations.
- En utilisant une loi liée à Newton en disant que le rapport des vitesses
- relatives après et avant le choc est égal à -e 
+Après la première trajectoire, on réinitialise le temps t et on calcule
+ la dernière vitesse comptabilisée en atténuant cette vitesse avec un coefficien
+t choisit entre 0 et 1.
+\begin_inset Newline newline
+\end_inset
+
+A chaques nouveaux rebonds, le temps t est donc réinitialisé afin de pouvoir
+ tracer les trajectoires de manière cohérente.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+On garde donc les équations 
 \begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:rapport des vitesses relatives"
+LatexCommand ref
+reference "eq:equationx"
 
 \end_inset
 
- (le facteur e est le coefficient de restitution).
- On obtient le coefficient e en prenant la racine du rapport de la hauteur
- du bon actuel sur la hauteur du bon précédent.
- 
+ et 
 \begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:Obtention de e"
+LatexCommand ref
+reference "eq:trajectoirey"
 
 \end_inset
 
-
-\begin_inset Formula 
-\begin{eqnarray}
-\frac{v_{aprèschoc}}{v_{avantchoc}} & = & -e\label{eq:rapport des vitesses relatives}\\
-\sqrt[]{\frac{h_{n}}{h_{n-1}}} & = & e\label{eq:Obtention de e}
-\end{eqnarray}
-
+ avec un 
+\begin_inset Formula $v_{0}$
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
-On garde donc la tortue de masse m qui arrive avec une vitesse 
-\begin_inset Formula $v_{i}$
-\end_inset
-
- près du sol à la fin de notre première trajectoire.
- )
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Lors de la phase de rebond de la tortue, on considère que la composante
- 
-\begin_inset Formula $v_{x}$
-\end_inset
-
- reste constante et que seule la composante 
-\begin_inset Formula $v_{y}$
-\end_inset
-
- subit des changements du au rebond sur le sol.
- Les frottements dues au sol sont négligés lors de la phase de rebond afin
- de faciliter l'approche.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-On a donc créé un tableau des valeurs des composantes de 
-\begin_inset Formula $v_{x}$
-\end_inset
-
- et de 
-\begin_inset Formula $v_{y}$
-\end_inset
-
- afin de récupérer la dernière valeur de la composante 
-\begin_inset Formula $v_{y}$
-\end_inset
-
- .
- En se servant de la dernière composante on peut donc faire une boucle pour
- faire les rebonds en modifiant les trajectoires qui seront :
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-x & = & \tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))\\
-y & = & \tau.((0,1)^{n}.v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau
-\end{eqnarray}
-
-\end_inset
-
-
+ qui change pour chaque nouveau rebond et le t qui est réinitialisé.
 \end_layout
 
 \begin_layout Part

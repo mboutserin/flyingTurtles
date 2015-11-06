@@ -19,6 +19,7 @@
 #include <TMarker.h>
 #include <TSystem.h>
 #include "simulationphy.h"
+#include "objet.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ using namespace std;
 int Nshots=5;                   //  Nshots corresponds au nombre de tir maximum quand on lance l'executable
 double x0;                      //  x0 = déplacement du repère pour le rebond de la balle
 double coeffRebond;             //  coeffRebond est le coeff qui varie selon le matériau sur lequel on rebondit
-int count=1;                    //  ?!?!?!?!?!
+int compte=1;                    //  ?!?!?!?!?!
 //  Déclaration des variables Ennemi
 int positionEnnemiX,positionEnnemiY;
 int tailleEnnemiX,tailleEnnemiY;
@@ -45,7 +46,7 @@ int vitesseVent;
 //============================== Ma Classe Fenetre ==============================
 class Fenetre: public TCanvas
 {
-    SimulationPhy *simuLancerBalle = new SimulationPhy();
+    SimulationPhy simuLancerBalle = SimulationPhy();
 
     public:
     // constructeur ......
@@ -79,10 +80,13 @@ class Fenetre: public TCanvas
         Double_t y = gPad->AbsPixeltoY(py);
 
         //––––––––––––– Si bouton gauche appuyé dessine un point ––––––––––––––
-        if(event==1 && count<Nshots+1)
+        if(event==1 && compte<Nshots+1)
         {
             thetarad = atan((y)/(x));
             v0=sqrt(x*x+y*y);
+
+
+            Objet tortue = Objet(0,10);
 
             if(v0 > 75)                        //  Vitesse limite v0 sinon jeu trop facile
             {
@@ -91,6 +95,9 @@ class Fenetre: public TCanvas
                 y = v0*sin(thetarad);
             }
 
+            tortue.setVx(x);
+            tortue.setVy(y);
+
             //  Dessin du vecteur v0
             TArrow *vecteurV0=new TArrow(0,0,x,y);
             vecteurV0->SetLineColor(kBlack);
@@ -98,15 +105,24 @@ class Fenetre: public TCanvas
             vecteurV0->Draw();
             Update();          //  Mise à jour de la fenêtre c (dessin du vecteur V0)
 
+            /*
             //  Déclaration de la position
             double x1,y1;
             double *coord = SimulationPhy::sansFrottement(v0,thetarad,t,x0);
             y1 = coord[1];
             x0 = 0;
-
-            while(x1 < 300)         //  Tant que on est pas sortie de la fenêtre (x > 300) on exécute
+*/
+//            while(x1 < 300)         //  Tant que on est pas sortie de la fenêtre (x > 300) on exécute
+            while(tortue.getVitesse() > 3 && tortue.getVx() > 0 && tortue.getX() < 300)
             {
-                if(y1 < 0)          //  Modélisation du rebond
+                simuLancerBalle.bouger(tortue,dt);
+
+                balle.SetX1(tortue.getX());
+                balle.SetY1(tortue.getY());
+                balle.Draw();
+
+                cout << "x=" << tortue.getX() << " et y=" << tortue.getY() << endl;
+ /*               if(y1 < 0)          //  Modélisation du rebond
                 {
                     t = 0;
                     x0 = x1;
@@ -118,7 +134,7 @@ class Fenetre: public TCanvas
                     cout << "Beau gosse" << endl;
                     break;
                 }*/
-
+/*
                 coord = SimulationPhy::sansFrottement(v0,thetarad,t,x0);           //  |
                 t += dt;                                            //  |
                 x1 = coord[0];                                      //  |
@@ -126,7 +142,7 @@ class Fenetre: public TCanvas
                 balle.SetX1(coord[0]);                              //  |
                 balle.SetY1(coord[1]);                              //  |
                 balle.Draw();                                       //  |
-
+*/
                 this_thread::sleep_for(chrono::milliseconds{dt/4});             // attend dt/4 millisecondes
                 Update();                                                       //  Mise à jour de la fenêtre c (dessin de la balle)
             }
@@ -134,9 +150,9 @@ class Fenetre: public TCanvas
              Update();                                                          //  Mise à jour de la fenêtre c
 
 
-        if(count == Nshots-1)      cout << "Attention, c'est votre dernier tire. A vous !" << endl;
-        if(count < Nshots-1)       cout << "A vous !" << endl;
-        count++;
+        if(compte == Nshots-1)      cout << "Attention, c'est votre dernier tire. A vous !" << endl;
+        if(compte < Nshots-1)       cout << "A vous !" << endl;
+        compte++;
 
         }   //  end if (event==1)
 

@@ -1,6 +1,11 @@
 #ifndef SIMULATIONPHY_H
 #define SIMULATIONPHY_H
 
+#include <math.h>
+#include <armadillo>
+using namespace arma;
+
+#include "objet.h"
 
 static double Gravitation = 9.81;
 
@@ -12,20 +17,14 @@ class SimulationPhy
 
         static double *sansFrottement(double v0, double thetarad, double t, double x0);
         //double getGravitation();
+        void bouger(Objet &objet, double delta_t);
 
     private:
-};
+        double gravitation;
+        double vent;
+        double coefRebond;
 
-class Objet
-{
-    public:
-        Objet(double x0=0,double y0=0);
-
-    private:
-        double x;
-        double y;
-        double masse;
-        double v;
+        vec2 newton2(Objet &objet);
 };
 
 #endif // SIMULATIONPHY_H

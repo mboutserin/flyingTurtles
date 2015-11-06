@@ -19,6 +19,7 @@
 #include <TMarker.h>
 #include <TSystem.h>
 #include "simulationphy.h"
+#include "enregistrement.h"
 
 using namespace std;
 
@@ -104,7 +105,7 @@ class Fenetre: public TCanvas
             y1 = coord[1];
             x0 = 0;
 
-            while(x1 < 300)         //  Tant que on est pas sortie de la fenêtre (x > 300) on exécute
+            while(x1 < 300)        //  Tant que on est pas sortie de la fenêtre (x > 300) on exécute
             {
                 if(y1 < 0)          //  Modélisation du rebond
                 {

@@ -246,11 +246,13 @@ Cas d'un lancer sans frottements :
  
 \shape default
 \color inherit
-on considère les constantes m(la masse de la tortue), la constante de gravité
+on considère les constantes m (la masse de la tortue), la constante de gravité
  g=9,81m/s et une hauteur de départ y0.
  On entre également deux variables choisie arbitrairement par l'utilisateur
  du logiciel, v0 la vitesse initiale en m/s et theta0 l'angle de lancer
  initial.
+ Finalement, on considère la force du vent notée f qui est choisie constante
+ et au hasard.
 \begin_inset Newline newline
 \end_inset
 
@@ -294,7 +296,7 @@ Conditions initiales d'un lancer de balle
 En utilisant le Principe Fondamental de la Dynamique, on a donc :
 \begin_inset Formula 
 \begin{eqnarray}
-m\frac{d^{2}x}{dt^{2}} & = & 0\\
+m\frac{d^{2}x}{dt^{2}} & = & f\\
 m\frac{d^{2}y}{dt^{2}} & = & -mg
 \end{eqnarray}
 
@@ -307,7 +309,7 @@ en intégrant par rapport au temps et par les conditions initiales, on a
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-\frac{dx}{dt} & = & v_{0}\\
+\frac{dx}{dt} & = & ft+v_{0}\\
 \frac{dy}{dt} & = & -gt+v_{0}
 \end{eqnarray}
 
@@ -332,10 +334,62 @@ newpage
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-x & = & v_{0}.t.cos(\text{\theta})\\
+x & = & \frac{ft^{2}}{2}+v_{0}.t.cos(\text{\theta})\\
 y & = & -\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
 \end{eqnarray}
 
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Pour le coder sur CodeBlocks, on a utilisé la méthode de Newton en prenant
+ un temps 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+, la vitesse selon x et la vitesse selon y qui vont donc varier selon la
+ méthode de Newton.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vitesse1(0) = objet.getVx() + acceleration(0)*delta_t/1000;     vitesse1(1)
+ = objet.getVy() + acceleration(1)*delta_t/1000;
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Les accélérations sont calculées grace aux forces du vent (pour la vitesse
+ en x) et de la gravitation (pour la vitesse en y).
+ La force f du vent est choisie de manière aléatoire à chaque nouvelle partie
+ et la gravitation reste toujours la même, on obtient donc facilement l'accéléra
+tion selon x et selon y.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+On choisit donc cette méthode et ce cas sans frottements pour modéliser
+ notre jeu.
+\begin_inset Newline newline
 \end_inset
 
 
@@ -343,10 +397,10 @@ y & = & -\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
 
 \begin_layout Itemize
 
-\emph on
+\shape italic
 \bar under
 Cas d'un lancer avec frottements :
-\emph default
+\shape default
 \bar default
  On reprend les notations et les équations qui précèdent en ajoutant les
  composantes liées à la force de frottement F.
@@ -394,7 +448,7 @@ Lancer d'une tortue avec frottement
 On applique donc à nouveau le PFD, on a : 
 \begin_inset Formula 
 \begin{eqnarray}
-\frac{d^{2}x}{dt^{2}}+\frac{k}{m}.\frac{dx}{dt} & = & 0\\
+\frac{d^{2}x}{dt^{2}}+\frac{k}{m}.\frac{dx}{dt} & = & f\\
 \frac{d^{2}y}{dt^{2}}+\frac{k}{m}.\frac{dy}{dt} & = & -g
 \end{eqnarray}
 
@@ -411,17 +465,22 @@ En résolvant l'équation différentielle et en intégrant le résultat, on obti
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-x & = & \tau.v_{0}.cos(\theta).(1-exp(-\frac{t}{\tau}))\label{eq:equationx}\\
+x & = & \tau.(v_{0}.cos(\theta)+f.\tau).(1-exp(-\frac{t}{\tau}))-f.t.\tau\label{eq:equationx}\\
 y & = & \tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\label{eq:trajectoirey}
 \end{eqnarray}
 
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+On décide par la suite de ne pas utiliser le cas avec frottements pour des
+ raisons pratiques conçernant le rebond.
 \end_layout
 
 \begin_layout Part
-Les rebonds après la trajectoire parabolique de base
+Les rebonds 
 \end_layout
 
 \begin_layout Standard
@@ -440,41 +499,16 @@ A chaques nouveaux rebonds, le temps t est donc réinitialisé afin de pouvoir
 \begin_inset Newline newline
 \end_inset
 
-On garde donc les équations 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:equationx"
-
+Afin de varier le 
+\begin_inset Quotes fld
 \end_inset
 
- et 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:trajectoirey"
-
+mode
+\begin_inset Quotes frd
 \end_inset
 
- avec un 
-\begin_inset Formula $v_{0}$
-\end_inset
-
- qui change pour chaque nouveau rebond et le t qui est réinitialisé.
-\end_layout
-
-\begin_layout Part
-Glissade de la tortue après arrivée en y=0
-\end_layout
-
-\begin_layout Part
-Ajout d'intempéries
-\end_layout
-
-\begin_layout Part
-Ajout d'ennemis
-\end_layout
-
-\begin_layout Standard
-
+ de rebond, on met a disposition du joueur plusieurs sols différents (boueux,
+ bétonneux, herbeux) pour avoir différent coefficient de rebond.
 \end_layout
 
 \end_body

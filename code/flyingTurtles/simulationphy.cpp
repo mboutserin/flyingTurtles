@@ -8,10 +8,14 @@ SimulationPhy::SimulationPhy()
     coefRebond = 0.95; // niet
 }
 
-SimulationPhy::~SimulationPhy()
+SimulationPhy::SimulationPhy(double rebond)
 {
-    //dtor
+    SimulationPhy();
+    coefRebond = rebond;
 }
+
+SimulationPhy::~SimulationPhy()
+{}
 
 double SimulationPhy::getVent()
 {

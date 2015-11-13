@@ -14,6 +14,7 @@ class SimulationPhy
 {
     public:
         SimulationPhy();
+        SimulationPhy(double rebond);
         ~SimulationPhy();
 
         static double *sansFrottement(double v0, double thetarad, double t, double x0);

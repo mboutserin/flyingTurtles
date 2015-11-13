@@ -2,7 +2,6 @@
 //$ g++ -I `root-config --incdir` -o MyExec mainCLIC.cpp `root-config --libs` -std=c++11
 //$ ./MyExec
 
-#include <iostream>
 #include <time.h>
 #include <math.h>
 #include <thread>
@@ -20,6 +19,7 @@
 #include <TSystem.h>
 #include "simulationphy.h"
 #include "objet.h"
+#include "interface.h"
 
 using namespace std;
 
@@ -37,7 +37,7 @@ int tailleEnnemiX,tailleEnnemiY;
 int typeSol,x;
 //  Déclaration des variables vent
 int vitesseVent;
-
+//  Dessin du vecteur vent
 TArrow vecteurVent;
 
 
@@ -170,14 +170,9 @@ int main(int argc, char **argv)
 
     //  Initialisation de root
     TApplication theApp("App", &argc, argv);
-    cout << endl;
 
-    cout << "********************************************************************************" << endl;
-    cout << "****************** Bienvenue dans le menu de flyingTurtles !! ******************" << endl;
-    cout << "********************************************************************************" << endl;
-
-    cout << endl << "Combien de tortues voulez-vous jeter ?" <<endl;
-    cin >> Nshots;
+    Interface menu = Interface();
+    menu.menu();
 
     cout << "CLIQUEZ avec la souris dans la fenêtre afin de faire voler les tortues." << endl;
 

@@ -71,9 +71,9 @@ vec2 SimulationPhy::newton2(Objet &objet)
 {
     vec2 acceleration;
 
-    acceleration(0) = -gravitation;
+    acceleration(0) = vent;
     //acceleration(1) = 0;
-    acceleration(1) = vent;
+    acceleration(1) = -gravitation;
 
     return acceleration;
 }

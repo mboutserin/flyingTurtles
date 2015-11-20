@@ -247,15 +247,24 @@ Cas d'un lancer sans frottements :
 \shape default
 \color inherit
 on considère les constantes m (la masse de la tortue), la constante de gravité
+<<<<<<< HEAD
  g=9,81m/s et une hauteur de départ y
 \begin_inset script subscript
 
 \begin_layout Plain Layout
 0.
+=======
+ g = 9,81m/s et une hauteur de départ y
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+0
+>>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
 \end_layout
 
 \end_inset
 
+<<<<<<< HEAD
  On entre également deux variables choisie arbitrairement par l'utilisateur
  du logiciel, v0 la vitesse initiale en m/s et 
 \begin_inset Formula $\theta_{0}$
@@ -264,6 +273,11 @@ on considère les constantes m (la masse de la tortue), la constante de gravité
  l'angle de lancer initial.
  Finalement, on considère la force du vent notée f qui est choisie constante
  et au hasard.
+=======
+.
+ On entre également deux variables choisie arbitrairement par l'utilisateur
+ du logiciel,  la vitesse initiale en m/s et l'angle de lancer initial.
+>>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
 \begin_inset Newline newline
 \end_inset
 
@@ -523,7 +537,32 @@ mode
 \end_layout
 
 \begin_layout Part
+<<<<<<< HEAD
 hbbh
+=======
+Ajout d'intempéries et d'un coefficient de rebond
+\end_layout
+
+\begin_layout Standard
+Dans notre programme nous avons réalisé un terme random concernant le vent,
+ nous créons du vent de façon aléatoire afin que le joueur doive s'adapter
+ aux conditions particulière qui peut changer à chaque partie, ce vent n'est
+ pas changer à chaque lancer.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Ajout d'ennemis
+\end_layout
+
+\begin_layout Standard
+On donne une taille telle que 10<x<50 et 10<y<30, puis on lui donne un emplaceme
+nt aléatoire dans une partie de la fenêtre en faisant en sorte qu'il ne
+ soit pas a l'emplaçement de base de la tortue pour ne pas fausser la partie.
+>>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
 \end_layout
 
 \end_body

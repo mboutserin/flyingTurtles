@@ -69,11 +69,11 @@ void Interface::dessinVent(double vent)
 // à l'initialisation, la tortue est ainsi.
 void Interface::dessinTortue(Objet t)
 {
-    TEllipse balle(0,0,5);
-    balle.SetLineColor(kGreen+3);
-    balle.SetX1(t.getX());
-    balle.SetY1(t.getY());
-    balle.Draw();
+    modeleTortue = TEllipse(0,0,5);
+    modeleTortue.SetLineColor(kGreen+3);
+    modeleTortue.SetX1(t.getX());
+    modeleTortue.SetY1(t.getY());
+    modeleTortue.Draw();
 }
 
 void Interface::dessinMonde(int sol, Objet ennemi, double vent, Objet tortue)

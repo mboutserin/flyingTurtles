@@ -27,6 +27,9 @@ class Interface
     protected:
 
     private:
+        // éléments non statiques
+        TEllipse modeleTortue;
+
 };
 
 #endif // INTERFACE_H

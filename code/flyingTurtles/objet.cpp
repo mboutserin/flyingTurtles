@@ -67,6 +67,8 @@ void Objet::setVy(double v0)
 
 void Objet::bouger(double delta_t)
 {
+//cout << "objet dt=" << delta_t << endl;
+//cout << "vitesse objet =" << vitesse(0) << "," << vitesse(1) << endl;
     position(0)+=delta_t*vitesse(0);
     position(1)+=delta_t*vitesse(1);
 }

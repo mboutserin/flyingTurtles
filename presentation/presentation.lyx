@@ -689,11 +689,5 @@ Rebondissement de la tortue
 Modélisation du revêtement du sol
 \end_layout
 
-\begin_layout Standard
-On décide de choisir de manière aléatoire trois types de sol : la boue,
- le béton et l'herbe.
- Le coefficient de rebond de chacun
-\end_layout
-
 \end_body
 \end_document

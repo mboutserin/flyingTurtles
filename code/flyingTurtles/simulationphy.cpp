@@ -22,6 +22,11 @@ double SimulationPhy::getVent()
     return vent;
 }
 
+void SimulationPhy::setRebond(double r)
+{
+    coefRebond = r;
+}
+/*
 double* SimulationPhy::sansFrottement(double v0, double thetarad, double t, double x0)
 {
     double x,y;
@@ -31,7 +36,7 @@ double* SimulationPhy::sansFrottement(double v0, double thetarad, double t, doub
     u[0] = x;
     u[1] = y;
     return u;
-}
+}*/
 
 /**
  *  Méthode d'Euler

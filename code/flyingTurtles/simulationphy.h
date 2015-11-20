@@ -7,8 +7,6 @@ using namespace arma;
 
 #include "objet.h"
 
-static double Gravitation = 9.81;
-
 
 class SimulationPhy
 {
@@ -17,9 +15,10 @@ class SimulationPhy
         SimulationPhy(double rebond);
         ~SimulationPhy();
 
-        static double *sansFrottement(double v0, double thetarad, double t, double x0);
+//        static double *sansFrottement(double v0, double thetarad, double t, double x0);
         //double getGravitation();
         double getVent();
+        void setRebond(double r);
 
         void bouger(Objet &objet, double delta_t);
 

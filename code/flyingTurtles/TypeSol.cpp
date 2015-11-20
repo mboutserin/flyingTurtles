@@ -1,4 +1,4 @@
-#include "TypeSol.h"
+/*#include "TypeSol.h"
 #include <math.h>
 #include <thread>
 #include <TLine.h>
@@ -58,5 +58,5 @@ TypeSol::~TypeSol()
 //  La boue et le béton se dessine après l'ennemi car l'ennemi ne peut écraser le béton (simple soucis de logique)
 
 
-
+*/
 

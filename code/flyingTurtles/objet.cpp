@@ -2,12 +2,34 @@
 
 Objet::Objet(double x0,double y0,double v0x, double v0y)
 {
+    position = vec(2);
     position(0)=x0;
     position(1)=y0;
     masse=50;
+    vitesse = vec(2);
     vitesse(0)=v0x;
     vitesse(1)=v0y;
     energie=0;
+}
+
+double Objet::getHauteur()
+{
+    return hauteur;
+}
+
+void Objet::setHauteur(double h)
+{
+    hauteur = h;
+}
+
+double Objet::getLongueur()
+{
+    return longueur;
+}
+
+void Objet::setLongueur(double l)
+{
+    longueur = l;
 }
 
 double Objet::getX()
@@ -51,5 +73,11 @@ void Objet::bouger(double delta_t)
 
 double Objet::getVitesse()
 {
-    return vitesse(0)*vitesse(0) + vitesse(1)*vitesse(1);
+    return sqrt(vitesse(0)*vitesse(0) + vitesse(1)*vitesse(1));
+}
+
+void Objet::setVitesse(double vx, double vy)
+{
+    vitesse(0) = vx;
+    vitesse(1) = vy;
 }

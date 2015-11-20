@@ -246,28 +246,8 @@ Cas d'un lancer sans frottements :
  
 \shape default
 \color inherit
-on considère les constantes m (la masse de la tortue), la constante de gravité
-<<<<<<< HEAD
- g=9,81m/s et une hauteur de départ y
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-0.
-=======
- g = 9,81m/s et une hauteur de départ y
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-0
->>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
-\end_layout
-
-\end_inset
-
-<<<<<<< HEAD
-=======
-.
->>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
+on considère les constantes m (la masse de la tortue) et la constante de
+ gravité g=9,81m/s.
  On entre également deux variables choisie arbitrairement par l'utilisateur
  du logiciel, v
 \begin_inset script subscript
@@ -278,7 +258,6 @@ on considère les constantes m (la masse de la tortue), la constante de gravité
 
 \end_inset
 
-<<<<<<< HEAD
  la vitesse initiale en m/s et 
 \begin_inset Formula $\theta_{0}$
 \end_inset
@@ -286,18 +265,6 @@ on considère les constantes m (la masse de la tortue), la constante de gravité
  l'angle de lancer initial.
  Finalement, on considère la force du vent notée f qui est choisie constante
  et au hasard.
-=======
- la vitesse initiale en m/s et θ
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-
- l'angle de lancer initial.
->>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
 \begin_inset Newline newline
 \end_inset
 
@@ -400,26 +367,29 @@ Pour le coder sur CodeBlocks, on a utilisé la méthode de Newton en prenant
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
+\begin_layout Standard
 \begin_inset listings
 inline false
 status open
 
 \begin_layout Plain Layout
 
-vitesse1(0) = objet.getVx() + acceleration(0)*delta_t/1000;     vitesse1(1)
- = objet.getVy() + acceleration(1)*delta_t/1000;
+vitesse1(0) = objet.getVx() + acceleration(0)*delta_t/1000;    
+\end_layout
+
+\begin_layout Plain Layout
+
+vitesse1(1) = objet.getVy() + acceleration(1)*delta_t/1000;
 \end_layout
 
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Standard
 Les accélérations sont calculées grace aux forces du vent (pour la vitesse
  en x) et de la gravitation (pour la vitesse en y).
  La force f du vent est choisie de manière aléatoire à chaque nouvelle partie
@@ -529,69 +499,200 @@ Les rebonds
 \end_layout
 
 \begin_layout Standard
-Après la première trajectoire, on réinitialise le temps t et on calcule
- la dernière vitesse comptabilisée en atténuant cette vitesse avec un coefficien
-t choisit entre 0 et 1.
-\begin_inset Newline newline
-\end_inset
+Après la première trajectoire, on multiplie la vitesse v
+\begin_inset script subscript
 
-A chaques nouveaux rebonds, le temps t est donc réinitialisé afin de pouvoir
- tracer les trajectoires de manière cohérente.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Afin de varier le 
-\begin_inset Quotes fld
-<<<<<<< HEAD
-\end_inset
-
-mode
-\begin_inset Quotes frd
-\end_inset
-
-=======
-\end_inset
-
-mode
-\begin_inset Quotes frd
-\end_inset
-
->>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
- de rebond, on met a disposition du joueur plusieurs sols différents (boueux,
- bétonneux, herbeux) pour avoir différent coefficient de rebond.
+\begin_layout Plain Layout
+0
 \end_layout
 
-\begin_layout Part
-<<<<<<< HEAD
-hbbh
-=======
-Ajout d'intempéries et d'un coefficient de rebond
+\end_inset
+
+par un coefficient de rebond qui dépend du revêtement sur le sol.
+ Ce revêtement de sol peut être de trois types différents : herbe, béton,
+ boue.
+ Les coefficient de rebond sont repartis comme ceci :
 \end_layout
 
 \begin_layout Standard
-Dans notre programme nous avons réalisé un terme random concernant le vent,
- nous créons du vent de façon aléatoire afin que le joueur doive s'adapter
- aux conditions particulière qui peut changer à chaque partie, ce vent n'est
- pas changer à chaque lancer.
-\begin_inset Newline newline
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type de sol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coefficient de rebond
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Boue
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+coeff = 0.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Herbe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+coeff = 0.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Béton
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+coeff = 0.95
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Coefficient de rebond en fonction du type de sol
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Rebond.jpg
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Rebondissement de la tortue
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Part
-Ajout d'ennemis
+Modélisation du revêtement du sol
 \end_layout
 
 \begin_layout Standard
-On donne une taille telle que 10<x<50 et 10<y<30, puis on lui donne un emplaceme
-nt aléatoire dans une partie de la fenêtre en faisant en sorte qu'il ne
- soit pas a l'emplaçement de base de la tortue pour ne pas fausser la partie.
->>>>>>> 14aaa598c59ed39adff4087fc17275cdf990b48f
+On décide de choisir de manière aléatoire trois types de sol : la boue,
+ le béton et l'herbe.
+ Le coefficient de rebond de chacun
 \end_layout
 
 \end_body

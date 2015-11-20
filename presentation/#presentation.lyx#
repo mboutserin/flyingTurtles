@@ -246,11 +246,23 @@ Cas d'un lancer sans frottements :
  
 \shape default
 \color inherit
-on considère les constantes m (la masse de la tortue), la constante de gravité
- g=9,81m/s et une hauteur de départ y0.
+on considère les constantes m (la masse de la tortue) et la constante de
+ gravité g=9,81m/s.
  On entre également deux variables choisie arbitrairement par l'utilisateur
- du logiciel, v0 la vitesse initiale en m/s et theta0 l'angle de lancer
- initial.
+ du logiciel, v
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ la vitesse initiale en m/s et 
+\begin_inset Formula $\theta_{0}$
+\end_inset
+
+ l'angle de lancer initial.
  Finalement, on considère la force du vent notée f qui est choisie constante
  et au hasard.
 \begin_inset Newline newline
@@ -365,8 +377,26 @@ status open
 
 \begin_layout Plain Layout
 
-vitesse1(0) = objet.getVx() + acceleration(0)*delta_t/1000;     vitesse1(1)
- = objet.getVy() + acceleration(1)*delta_t/1000;
+
+\backslash
+begin_inset
+\end_layout
+
+\begin_layout Plain Layout
+
+vitesse1(0) = objet.getVx() + acceleration(0)*delta_t/1000;    
+\end_layout
+
+\begin_layout Plain Layout
+
+vitesse1(1) = objet.getVy() + acceleration(1)*delta_t/1000;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end_inset
 \end_layout
 
 \end_inset
@@ -484,35 +514,163 @@ Les rebonds
 \end_layout
 
 \begin_layout Standard
-Après la première trajectoire, on réinitialise le temps t et on calcule
- la dernière vitesse comptabilisée en atténuant cette vitesse avec un coefficien
-t choisit entre 0 et 1.
-\begin_inset Newline newline
+Après la première trajectoire, on multiplie la vitesse v
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+0
+\end_layout
+
 \end_inset
 
-A chaques nouveaux rebonds, le temps t est donc réinitialisé afin de pouvoir
- tracer les trajectoires de manière cohérente.
-\begin_inset Newline newline
+par un coefficient de rebond qui dépend du revêtement sur le sol.
+ Ce revêtement de sol peut être de trois types différents : herbe, béton,
+ boue.
+ Les coefficient de rebond sont repartis comme ceci :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type de sol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coefficient de rebond
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Boue
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+coeff = 0.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Herbe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+coeff = 0.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Béton
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+coeff = 0.95
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
 \end_inset
 
 
-\begin_inset Newline newline
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Coefficient de rebond en fonction du type de sol
+\end_layout
+
 \end_inset
 
-Afin de varier le 
-\begin_inset Quotes fld
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
-mode
-\begin_inset Quotes frd
-\end_inset
 
- de rebond, on met a disposition du joueur plusieurs sols différents (boueux,
- bétonneux, herbeux) pour avoir différent coefficient de rebond.
 \end_layout
 
 \begin_layout Part
-hbbh
+Modélisation du revêtement du sol
+\end_layout
+
+\begin_layout Standard
+On décide de choisir de manière aléatoire trois types de sol : la boue,
+ le béton et l'herbe.
+ Le coefficient de rebond de chacun
 \end_layout
 
 \end_body

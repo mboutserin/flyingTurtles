@@ -61,9 +61,12 @@ void Interface::dessinEnnemi(Objet ennemi)
 
 void Interface::dessinVent(double vent)
 {
-    TArrow *vecteurVent = new TArrow(245,290,245 + 2*vent,290);
-    vecteurVent->SetLineColor(kBlack);
-    vecteurVent->Draw();
+    if(vent != 0){
+        TArrow *vecteurVent = new TArrow(245,290,245 + 2*vent,290);
+        vecteurVent->SetLineColor(kBlack);
+        vecteurVent->Draw();
+    }
+
 }
 
 // à l'initialisation, la tortue est ainsi.

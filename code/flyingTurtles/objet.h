@@ -4,6 +4,8 @@
 #include <math.h>
 #include <armadillo>
 using namespace arma;
+#include "trace.h"
+#include <sstream>
 
 class Objet
 {
@@ -33,6 +35,8 @@ class Objet
         // fonctions
         void bouger(double delta_t);
 
+        void enregistrer(string nom);
+        void stopEnregistrer();
 
     private:
         vec2 position;
@@ -41,6 +45,8 @@ class Objet
         double energie;
         double hauteur;
         double longueur;
+
+        Trace trace;
 };
 
 #endif // OBJET_H

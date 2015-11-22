@@ -10,6 +10,8 @@ Objet::Objet(double x0,double y0,double v0x, double v0y)
     vitesse(0)=v0x;
     vitesse(1)=v0y;
     energie=0;
+
+    trace = Trace();
 }
 
 double Objet::getHauteur()
@@ -71,6 +73,10 @@ void Objet::bouger(double delta_t)
 //cout << "vitesse objet =" << vitesse(0) << "," << vitesse(1) << endl;
     position(0)+=delta_t*vitesse(0);
     position(1)+=delta_t*vitesse(1);
+
+    std::ostringstream strs;
+    strs << position(0) << " " << vitesse(0) << " " << position(1) << " " << vitesse(1);
+    trace.ecrire(strs.str());
 }
 
 double Objet::getVitesse()
@@ -82,4 +88,15 @@ void Objet::setVitesse(double vx, double vy)
 {
     vitesse(0) = vx;
     vitesse(1) = vy;
+}
+
+
+void Objet::enregistrer(string nom)
+{
+    trace.setFichier(nom);
+    trace.activer();
+}
+void Objet::stopEnregistrer()
+{
+    trace.couper();
 }

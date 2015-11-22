@@ -130,6 +130,8 @@ void Jeu::initTortue(double vx, double vy)
     }
 //cout << "vitesse tortue après limite : " << tortue.getVitesse() << endl;
     interface.dessinV0(tortue.getVx(),tortue.getVy());
+
+    //tortue.enregistrer("tortue.txt");
 }
 
 Options Jeu::getOptions()

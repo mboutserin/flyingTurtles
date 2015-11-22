@@ -4,7 +4,7 @@ SimulationPhy::SimulationPhy()
 {
     gravitation=-9.81; // m.s-2
     srand(time(NULL)); // initialise le hasard (1 seule fois)
-    vent = rand()%(10+1) - 10; //de [-10,10] m/s-2
+    vent = rand()%(5+1) - 5; //de [-5,5] m/s-2
     coefRebond = 0.95; // niet
 }
 
@@ -48,7 +48,7 @@ void SimulationPhy::bouger(Objet &objet, double delta_t)
     //  sur la vitesse résultante
     // la modélisation du rebond est basique :
     // ici, on inverse la vitesse et on multiplie par le coef de rebond
-    if(objet.getY() <= 0){
+    if(objet.getY() <= 0 && objet.getVy() < 0){
         vitesse1(1) *= -1.0*coefRebond;
     //cout << "coef rebond =" << coefRebond << endl;
     }

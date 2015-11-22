@@ -23,12 +23,14 @@ class Interface
         void dessinVent(double vent);
         void dessinTortue(Objet tortue);
         void dessinMonde(int sol, Objet ennemi, double vent, Objet tortue);
+        void dessinV0(double x, double y);
 
     protected:
 
     private:
         // éléments non statiques
         TEllipse modeleTortue;
+        TArrow vecteurV0;
 
 };
 

@@ -126,6 +126,8 @@ void Jeu::initTortue(double vx, double vy)
         tortue.setVx(v*cos(thetarad));
         tortue.setVy(v*sin(thetarad));
     }
+
+    interface.dessinV0(tortue.getVx(),tortue.getVy());
 }
 
 Options Jeu::getOptions()

@@ -84,3 +84,11 @@ void Interface::dessinMonde(int sol, Objet ennemi, double vent, Objet tortue)
     dessinTortue(tortue);
 }
 
+void Interface::dessinV0(double x, double y)
+{
+        //  Dessin du vecteur v0
+        vecteurV0=TArrow(0,0,x,y);
+        vecteurV0.SetLineColor(kBlack);
+        vecteurV0.SetLineWidth(2);
+        vecteurV0.Draw();
+}

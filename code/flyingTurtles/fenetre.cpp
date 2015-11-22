@@ -24,12 +24,6 @@ void Fenetre::ExecuteEvent(Int_t event, Int_t px, Int_t py)
 //cout << "position souris : x=" << x << ", y=" << y << endl;
         jeu.initTortue(x,y);
 //cout << "vitesse tortue après clic : x=" << jeu.getTortue().getVx() << " et y=" << jeu.getTortue().getVy() << endl;
-
-        //  Dessin du vecteur v0
-        TArrow *vecteurV0=new TArrow(0,0,x,y);
-        vecteurV0->SetLineColor(kBlack);
-        vecteurV0->SetLineWidth(2);
-        vecteurV0->Draw();
         Update();
 
         while(jeu.lancerDeTortue())

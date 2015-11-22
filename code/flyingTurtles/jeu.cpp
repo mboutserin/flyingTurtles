@@ -45,7 +45,7 @@ bool Jeu::lancerDeTortue()
 
     if(tortue.getVitesse() > 3 && tortue.getVx() > 0 && tortue.getX() < 300)
     {
-    cout << "la tortue avance" << endl;
+//    cout << "la tortue avance" << endl;
         avancer();
 
 
@@ -53,7 +53,7 @@ bool Jeu::lancerDeTortue()
         // attend dt/4 millisecondes
         return true;
     }
-cout << "la tortue s'arrête" << endl;
+//cout << "la tortue s'arrête" << endl;
     return false;
 }
 
@@ -118,15 +118,17 @@ void Jeu::initTortue(double vx, double vy)
     tortue = Objet(0,10, vx, vy);
     //  Vitesse limite v0 sinon jeu trop facile
 
+//cout << "vitesse tortue avant limite : " << tortue.getVitesse() << endl;
     if(tortue.getVitesse() > 75)
     {
-        double v = tortue.getVitesse();
+//    cout << "modification de la vitesse de la tortue" << endl;
+        double v = 75;
         //  Permet d'avoir le vecteur v0 correct
         double thetarad = atan((tortue.getVy())/(tortue.getVx()));
         tortue.setVx(v*cos(thetarad));
         tortue.setVy(v*sin(thetarad));
     }
-
+//cout << "vitesse tortue après limite : " << tortue.getVitesse() << endl;
     interface.dessinV0(tortue.getVx(),tortue.getVy());
 }
 
@@ -142,9 +144,9 @@ Objet Jeu::getTortue()
 
 void Jeu::avancer()
 {
-    cout << "on avance de dt dans la simulation" << endl;
+//    cout << "on avance de dt dans la simulation" << endl;
     simu.bouger(tortue, dt);
-    cout << "on redessine la tortue" << endl;
+//    cout << "on redessine la tortue" << endl;
     interface.dessinTortue(tortue);
 }
 

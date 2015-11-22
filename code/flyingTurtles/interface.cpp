@@ -54,16 +54,16 @@ void Interface::dessinSol(int typeSol)
 void Interface::dessinEnnemi(Objet ennemi)
 {
     //  Dessin de l'ennemi
-    TBox *dessinEnnemi=new TBox(ennemi.getX()-ennemi.getLongueur(),ennemi.getY()-ennemi.getHauteur(),ennemi.getX(),ennemi.getY());
+    TBox *dessinEnnemi = new TBox(ennemi.getX()-ennemi.getLongueur(),ennemi.getY()-ennemi.getHauteur(),ennemi.getX(),ennemi.getY());
     dessinEnnemi->SetFillColor(kRed);
     dessinEnnemi->Draw();
 }
 
 void Interface::dessinVent(double vent)
 {
-    TArrow vecteurVent = TArrow(245,290,245 + 2*vent,290);
-    vecteurVent.SetLineColor(kBlack);
-    vecteurVent.Draw();
+    TArrow *vecteurVent = new TArrow(245,290,245 + 2*vent,290);
+    vecteurVent->SetLineColor(kBlack);
+    vecteurVent->Draw();
 }
 
 // à l'initialisation, la tortue est ainsi.

@@ -7,6 +7,7 @@ Jeu::Jeu()
     options = Options();
     dt = 10;
     simu = SimulationPhy();
+    compteTirs = 0;
 }
 
 /**
@@ -17,12 +18,14 @@ void Jeu::init()
     // d'abord, il faut récupérer les options
     // et pour le moment c'est ce qu'on fait avec le menu de l'interface
     interface.menu(options);
-
+//cout <<"on peut tirer "<<options.getNombreTirs()<<" fois"<<endl;
     // ensuite, on initialise les éléments du jeu
     //initTortue();
     initEnnemi();
     initSol();
 
+    // on remet le compte de tir à zéro.
+    compteTirs = 0;
     // après tout ça, on est prêt
 }
 
@@ -152,3 +155,16 @@ void Jeu::avancer()
     interface.dessinTortue(tortue);
 }
 
+bool Jeu::autorisationTir()
+{
+//cout << "compteTir="<<compteTirs<<", tir restants="<<options.getNombreTirs()<<endl;
+    if(compteTirs < options.getNombreTirs()){
+ //       cout << "on peut tirer" << endl;
+        compteTirs++;
+        interface.avertirTirs(options.getNombreTirs() - compteTirs);
+        return true;
+    }else{
+ //       cout << "on ne tire plus" << endl;
+        return false;
+    }
+}

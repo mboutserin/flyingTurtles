@@ -16,10 +16,8 @@ void Fenetre::ExecuteEvent(Int_t event, Int_t px, Int_t py)
     Double_t x = gPad->AbsPixeltoX(px);
     Double_t y = gPad->AbsPixeltoY(py);
 
-
-    int compteTirs=0;
     //––––––––––––– Si bouton gauche appuyé dessine un point ––––––––––––––
-    if(event==1 && compteTirs<jeu.getOptions().getNombreTirs())
+    if(event==1 && jeu.autorisationTir())
     {
 //cout << "position souris : x=" << x << ", y=" << y << endl;
         jeu.initTortue(x,y);
@@ -31,9 +29,6 @@ void Fenetre::ExecuteEvent(Int_t event, Int_t px, Int_t py)
             //  Mise à jour de la fenêtre c (dessin de la balle)
             Update();
         }
-        if(compteTirs == jeu.getOptions().getNombreTirs()){ cout << "Attention, c'est votre dernier tire. A vous !" << endl;}
-        if(compteTirs < jeu.getOptions().getNombreTirs()){ cout << "A vous !" << endl;}
-        compteTirs++;
     }   //  end if (event==1)
 
 }       //  ExecuteEvent

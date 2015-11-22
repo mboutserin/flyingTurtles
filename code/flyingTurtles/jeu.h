@@ -15,10 +15,10 @@ class Jeu
         void partie();
         void avancer();
         bool lancerDeTortue();
+        bool autorisationTir();
 
         Options getOptions();
         Objet getTortue();
-
 
         void initTortue(double vx = 0, double vy = 0);
 
@@ -29,6 +29,8 @@ class Jeu
         Options options;
         // interval de temps
         double dt;
+
+        int compteTirs;
 
         // les objets du monde du jeu
         Objet tortue;

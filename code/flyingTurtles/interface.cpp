@@ -4,7 +4,7 @@ Interface::Interface()
 {
 }
 
-void Interface::menu(Options options)
+void Interface::menu(Options &options)
 {
     int Nshots;
     cout << endl;
@@ -17,7 +17,6 @@ void Interface::menu(Options options)
     cin >> Nshots;
     options.setNombreTirs(Nshots);
     cout << "CLIQUEZ avec la souris dans la fenêtre afin de faire voler les tortues." << endl;
-
 }
 
 
@@ -62,7 +61,7 @@ void Interface::dessinEnnemi(Objet ennemi)
 void Interface::dessinVent(double vent)
 {
     if(vent != 0){
-        TArrow *vecteurVent = new TArrow(245,290,245 + 2*vent,290);
+        TArrow *vecteurVent = new TArrow(245,290,245 + 5*vent,290);
         vecteurVent->SetLineColor(kBlack);
         vecteurVent->Draw();
     }
@@ -94,4 +93,15 @@ void Interface::dessinV0(double x, double y)
         vecteurV0.SetLineColor(kBlack);
         vecteurV0.SetLineWidth(2);
         vecteurV0.Draw();
+}
+
+void Interface::avertirTirs(int tirRestants)
+{
+    if(tirRestants < 1){
+        cout << "Terminé !" << endl;
+    }else if(tirRestants == 1){
+        cout << "Attention, c'est votre dernier tire. A vous !" << endl;
+    }else{
+        cout << "A vous !" << endl;
+    }
 }

@@ -17,13 +17,14 @@ class Interface
 {
     public:
         Interface();
-        void menu(Options options);
+        void menu(Options& options);
         void dessinEnnemi(Objet ennemi);
         void dessinSol(int typeSol);
         void dessinVent(double vent);
         void dessinTortue(Objet tortue);
         void dessinMonde(int sol, Objet ennemi, double vent, Objet tortue);
         void dessinV0(double x, double y);
+        void avertirTirs(int tirRestants);
 
     protected:
 

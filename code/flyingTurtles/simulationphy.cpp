@@ -5,7 +5,6 @@ SimulationPhy::SimulationPhy()
     gravitation=-9.81; // m.s-2
     srand(time(NULL)); // initialise le hasard (1 seule fois)
     vent = rand()%(5+1) - 5; //de [-5,5] m/s-2
-    coefRebond = 0.95; // niet
 }
 
 SimulationPhy::SimulationPhy(double rebond)
@@ -49,7 +48,7 @@ void SimulationPhy::bouger(Objet &objet, double delta_t)
     // la modélisation du rebond est basique :
     // ici, on inverse la vitesse et on multiplie par le coef de rebond
     if(objet.getY() <= 0 && objet.getVy() < 0){
-        vitesse1(1) *= -1.0*coefRebond;
+        vitesse1(1) *= -1*coefRebond;
     //cout << "coef rebond =" << coefRebond << endl;
     }
 //    cout << "vitesse simu : x=" << vitesse1(0) << " et y=" << vitesse1(1) << endl;
@@ -68,7 +67,7 @@ void SimulationPhy::bouger(Objet &objet, double delta_t)
   *  Donc on a :
   *  -gravitation = ay
   *  vent = ax
- */
+ **/
 vec2 SimulationPhy::newton2(Objet &objet)
 {
     vec2 acceleration = {vent, gravitation};

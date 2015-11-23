@@ -16,6 +16,8 @@ class Jeu
         void avancer();
         bool lancerDeTortue();
         bool autorisationTir();
+        double positionCentraleEnnemiX;
+        double positionCentraleEnnemiY;
 
         Options getOptions();
         Objet getTortue();
@@ -23,12 +25,17 @@ class Jeu
         void initTortue(double vx = 0, double vy = 0);
 
     private:
-        // les éléments du jeu
+        //  les éléments du jeu
         SimulationPhy simu;
         Interface interface;
         Options options;
-        // interval de temps
+        //  interval de temps
         double dt;
+        //  position ennemi
+        double setXennemi;
+        double setYennemi;
+        double setLongueur;
+        double setHauteur;
 
         int compteTirs;
 

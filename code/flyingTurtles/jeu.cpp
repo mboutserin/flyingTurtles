@@ -12,7 +12,7 @@ Jeu::Jeu()
 
 /**
  * Initialisation du jeu.
- */
+ **/
 void Jeu::init()
 {
     // d'abord, il faut récupérer les options
@@ -29,10 +29,12 @@ void Jeu::init()
     // après tout ça, on est prêt
 }
 
+
+
 /**
  * Fonction principale : lance une partie du jeu où l'on lance des tortues
  *  pour détruire un ennemi.
- */
+ **/
 void Jeu::partie()
 {
 
@@ -98,24 +100,30 @@ void Jeu::initEnnemi()
     //  Données concernant l'ennemi généré aléatoirement dans une zone défini
     //  150 < x < 300   et   0 < y < 100
     //  De taille 10 < tailleX < 50  et  10 < tailleY < 30
-    int A = 150;
-    // entier aléatoire entre 150 et 150 + A compris.
-    ennemi.setX(150 + rand()%(A+1));
-    int B = 100;
-    // entier aléatoire entre 0 et B compris.
-    ennemi.setY(rand()%(B+1));
-    int C = 40;
-    // entier aléatoire entre 10 et 10 + C compris.
-    ennemi.setLongueur(10 + rand()%(C+1));
-    int D = 20;
-    // entier aléatoire entre 10 et 10 + D compris.
-    ennemi.setHauteur(10 + rand()%(D+1));
+    int A = 150;                            // entier aléatoire entre 150 et 150 + A compris.
+    setXennemi = 150 + rand()%(A+1);
+    ennemi.setX(setXennemi);
+
+    int B = 100;                            // entier aléatoire entre 0 et B compris.
+    setYennemi = rand()%(B+1);
+    ennemi.setY(setYennemi);
+
+    int C = 40;                             // entier aléatoire entre 10 et 10 + C compris.
+    setLongueur = 10 + rand()%(C+1);
+    ennemi.setLongueur(setLongueur);
+
+    int D = 20;                             // entier aléatoire entre 10 et 10 + D compris.
+    setHauteur = 10 + rand()%(D+1);
+    ennemi.setHauteur(setHauteur);
+
+    positionCentraleEnnemiX = (setXennemi + setLongueur)/2;
+    positionCentraleEnnemiY = (setYennemi + setHauteur)/2;
 }
 
 /**
  * Initialisation de la tortue. Idéalement, les paramètres viendronts
  *  des options.
- */
+ **/
 void Jeu::initTortue(double vx, double vy)
 {
     tortue = Objet(0,10, vx, vy);
@@ -158,12 +166,15 @@ void Jeu::avancer()
 bool Jeu::autorisationTir()
 {
 //cout << "compteTir="<<compteTirs<<", tir restants="<<options.getNombreTirs()<<endl;
-    if(compteTirs < options.getNombreTirs()){
+    if(compteTirs < options.getNombreTirs())
+    {
  //       cout << "on peut tirer" << endl;
         compteTirs++;
         interface.avertirTirs(options.getNombreTirs() - compteTirs);
         return true;
-    }else{
+    }
+    else
+    {
  //       cout << "on ne tire plus" << endl;
         return false;
     }

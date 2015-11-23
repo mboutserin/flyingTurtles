@@ -97,11 +97,16 @@ void Interface::dessinV0(double x, double y)
 
 void Interface::avertirTirs(int tirRestants)
 {
-    if(tirRestants < 1){
+    if(tirRestants < 1)
+    {
         cout << "Terminé !" << endl;
-    }else if(tirRestants == 1){
+    }
+    else if(tirRestants == 1)
+    {
         cout << "Attention, c'est votre dernier tire. A vous !" << endl;
-    }else{
+    }
+    else
+    {
         cout << "A vous !" << endl;
     }
 }

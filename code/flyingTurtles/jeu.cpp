@@ -5,7 +5,7 @@ Jeu::Jeu()
 {
     // options par défaut
     options = Options();
-    dt = 10;
+    dt = 50;
     simu = SimulationPhy();
     compteTirs = 0;
 }
@@ -54,7 +54,7 @@ bool Jeu::lancerDeTortue()
         avancer();
 
 
-        this_thread::sleep_for(chrono::milliseconds{10/4});
+        this_thread::sleep_for(chrono::milliseconds{10});
         // attend dt/4 millisecondes
         return true;
     }

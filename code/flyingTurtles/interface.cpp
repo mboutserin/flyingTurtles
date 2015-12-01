@@ -2,6 +2,8 @@
 
 Interface::Interface()
 {
+    modeleTortue = TEllipse(0,0,5);
+    modeleTortue.SetLineColor(kGreen+3);
 }
 
 void Interface::menu(Options &options)
@@ -71,8 +73,6 @@ void Interface::dessinVent(double vent)
 // à l'initialisation, la tortue est ainsi.
 void Interface::dessinTortue(Objet t)
 {
-    modeleTortue = TEllipse(0,0,5);
-    modeleTortue.SetLineColor(kGreen+3);
     modeleTortue.SetX1(t.getX());
     modeleTortue.SetY1(t.getY());
     modeleTortue.Draw();

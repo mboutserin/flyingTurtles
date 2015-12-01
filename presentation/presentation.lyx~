@@ -264,7 +264,7 @@ on considère les constantes m (la masse de la tortue) et la constante de
 
  l'angle de lancer initial.
  Finalement, on considère la force du vent notée f qui est choisie constante
- et au hasard.
+ et au hasard ( entre -5m/s² et 5m/s² ).
 \begin_inset Newline newline
 \end_inset
 
@@ -686,13 +686,180 @@ Rebondissement de la tortue
 \end_layout
 
 \begin_layout Part
-Modélisation du revêtement du sol
+Modélisation de l'ennemi
 \end_layout
 
 \begin_layout Standard
-On décide de choisir de manière aléatoire trois types de sol : la boue,
- le béton et l'herbe.
- Le coefficient de rebond de chacun
+La position de l'ennemi est choisie de manière aléatoire par le programme.
+ Sa position est déterminée de la manière suivante :
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/PositionEnnemi.jpg
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Position de l'ennemi selon x et y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Et sa taille comme cela :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/TailleEnnemi.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Taille de l'ennemi selon x et y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Architecture du programme
+\end_layout
+
+\begin_layout Standard
+Afin d'éclaircir le programme ,de le rendre plus lisible et plus facile
+ de compréhension, nous avons décidé de créer une architecture pour notre
+ programme.
+ On utilise l'architecture trois tiers : une couche présentation, une autre
+ métier et la dernière données.
+ Ceci permet en effet une meilleure programmation et une plus grande modularité
+ du code.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+La couche présentation est relative à toute la partie graphique du programme,
+ à l'interface et à toutes les données que rentre l'utilisateur.
+\begin_inset Newline newline
+\end_inset
+
+La couche métier correspond au traitement des données, calculs et logique
+ de l'application (lancer une partie, arrêter le programme ect...).
+ C'est l'intelligence du programme.
+\begin_inset Newline newline
+\end_inset
+
+La couche données est faite pour l'enregistrement des données.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+La couche présentation ne communique qu'avec la couche métier et la coucher
+ métier ne communique qu'avec la couche données.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/TroisTiers.jpg
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Représentation de l'architecture Trois Tiers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Github
+\end_layout
+
+\begin_layout Standard
+Afin de partager notre avancement sur le projet ou que nous soyons, nous
+ avons décidé d'utiliser le site Github.
+ L'adresse est la suivante : 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/mboutserin/flyingTurtles.git
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \end_body

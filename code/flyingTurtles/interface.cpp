@@ -110,3 +110,8 @@ void Interface::avertirTirs(int tirRestants)
         cout << "A vous !" << endl;
     }
 }
+
+void Interface::victoire()
+{
+    cout << "Vous avez gagné !" << endl;
+}

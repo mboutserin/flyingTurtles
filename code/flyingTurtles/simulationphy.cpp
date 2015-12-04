@@ -74,4 +74,10 @@ vec2 SimulationPhy::newton2(Objet &objet)
     return acceleration;
 }
 
+/*
+bool collision(Objet &objet1,Objet &objet1)
+{
+
+}*/
+
 

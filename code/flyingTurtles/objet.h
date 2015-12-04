@@ -40,11 +40,13 @@ class Objet
 
     private:
         vec2 position;
+        // quand l'objet est un rectangle, x et y définissent le coin inférieur gauche
         double masse;
         vec2 vitesse;
         double energie;
         double hauteur;
         double longueur;
+        // quand l'objet est un rectangle, ces valeurs définissent la hauteur et la largeur
 
         Trace trace;
 };

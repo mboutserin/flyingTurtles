@@ -21,6 +21,7 @@ class Jeu
 
         Options getOptions();
         Objet getTortue();
+        bool isVictoire();
 
         void initTortue(double vx = 0, double vy = 0);
 

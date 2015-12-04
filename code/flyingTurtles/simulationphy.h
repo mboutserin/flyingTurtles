@@ -21,6 +21,7 @@ class SimulationPhy
         void setRebond(double r);
 
         void bouger(Objet &objet, double delta_t);
+//        bool collision(Objet &objet1,Objet &objet1);
 
     private:
         double gravitation;

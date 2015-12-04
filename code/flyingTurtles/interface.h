@@ -25,6 +25,7 @@ class Interface
         void dessinMonde(int sol, Objet ennemi, double vent, Objet tortue);
         void dessinV0(double x, double y);
         void avertirTirs(int tirRestants);
+        void victoire();
 
     protected:
 

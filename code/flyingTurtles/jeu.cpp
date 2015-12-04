@@ -48,6 +48,7 @@ bool Jeu::lancerDeTortue()
 //cout << "position tortue : x=" << tortue.getX() << " et y=" << tortue.getY() << endl;
 //cout << "vitesse tortue : x=" << tortue.getVx() << " et y=" << tortue.getVy() << endl;
 
+
     if(tortue.getVitesse() > 3 && tortue.getVx() > 0 && tortue.getX() < 300)
     {
 //    cout << "la tortue avance" << endl;
@@ -58,6 +59,8 @@ bool Jeu::lancerDeTortue()
         // attend dt/4 millisecondes
         return true;
     }
+    compteTirs++;
+    interface.avertirTirs(options.getNombreTirs() - compteTirs);
 //cout << "la tortue s'arrête" << endl;
     return false;
 }
@@ -97,6 +100,7 @@ void Jeu::initSol()
  */
 void Jeu::initEnnemi()
 {
+    ennemi = Objet();
     //  Données concernant l'ennemi généré aléatoirement dans une zone défini
     //  150 < x < 300   et   0 < y < 100
     //  De taille 10 < tailleX < 50  et  10 < tailleY < 30
@@ -169,13 +173,23 @@ bool Jeu::autorisationTir()
     if(compteTirs < options.getNombreTirs())
     {
  //       cout << "on peut tirer" << endl;
-        compteTirs++;
-        interface.avertirTirs(options.getNombreTirs() - compteTirs);
         return true;
     }
     else
     {
  //       cout << "on ne tire plus" << endl;
+        return false;
+    }
+}
+
+bool Jeu::isVictoire()
+{
+    if((tortue.getX() > (ennemi.getX()-ennemi.getLongueur()) && tortue.getX() < ennemi.getX())
+        && (tortue.getY() > ennemi.getY() && tortue.getY() < (ennemi.getY()+ennemi.getHauteur())))
+    {
+        interface.victoire();
+        return true;
+    }else{
         return false;
     }
 }

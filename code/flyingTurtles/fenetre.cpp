@@ -28,8 +28,15 @@ void Fenetre::ExecuteEvent(Int_t event, Int_t px, Int_t py)
         {
             //  Mise à jour de la fenêtre c (dessin de la balle)
             Update();
+            if(jeu.isVictoire())
+            {
+                exit(0);
+            }
         }
-    }   //  end if (event==1)
+    }else if(!jeu.autorisationTir())   //  end if (event==1)
+    {
+        exit(0);
+    }
 
 }       //  ExecuteEvent
 

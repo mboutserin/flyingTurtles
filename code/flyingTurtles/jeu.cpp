@@ -185,7 +185,7 @@ bool Jeu::autorisationTir()
 bool Jeu::isVictoire()
 {
     if((tortue.getX() > (ennemi.getX()-ennemi.getLongueur()) && tortue.getX() < ennemi.getX())
-        && (tortue.getY() > ennemi.getY() && tortue.getY() < (ennemi.getY()+ennemi.getHauteur())))
+        && (tortue.getY() < ennemi.getY() && tortue.getY() > (ennemi.getY()-ennemi.getHauteur())))
     {
         interface.victoire();
         return true;

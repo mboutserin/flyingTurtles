@@ -36,14 +36,19 @@ void SimulationPhy::setRebond(double r)
  */
 void SimulationPhy::bouger(Objet &objet, double delta_t)
 {
-    //1) évolution de la vitesse : dv/dt = a => v1 = V0+a*delta_t
-    // bilan des forces : on a le vent et la gravité
+    //1) bilan des forces : on a le vent et la gravité
     vec2 acceleration = newton2(objet);
+
+    //2) évolution de la position : p1 = p0 + v*delta_t
+    objet.bouger((double)(delta_t/1000.00));
+
     //cout << "accélération simu : x=" << acceleration(0) << " et y=" << acceleration(1) << endl;
+
+    //3) évolution de la vitesse : dv/dt = a => v1 = V0+a*delta_t
     vec2 vitesse1;
     vitesse1(0) = objet.getVx() + acceleration(0)*delta_t/1000.00;
     vitesse1(1) = objet.getVy() + acceleration(1)*delta_t/1000.00;
-    //2) si on est au sol, il faut appliquer le coef de rebond
+    //4_) si on est au sol, il faut appliquer le coef de rebond
     //  sur la vitesse résultante
     // la modélisation du rebond est basique :
     // ici, on inverse la vitesse et on multiplie par le coef de rebond
@@ -56,8 +61,6 @@ void SimulationPhy::bouger(Objet &objet, double delta_t)
     objet.setVx(vitesse1(0));
     objet.setVy(vitesse1(1));
 
-    //3) évolution de la position : p1 = p0 + v*delta_t
-    objet.bouger((double)(delta_t/1000.00));
 
 }
 

@@ -131,12 +131,11 @@ M.
 \end_layout
 
 \begin_layout Abstract
-Lors de ce projet nous allons développer un jeu en C++ basé sur le jeu Angry
+Lors de ce projet nous avons développer un jeu en C++ basé sur le jeu Angry
  Birds, il sera nommé flyingTurtles.
  Ce jeu se base sur la mécanique car assimilé à un lancer de balle sans
- frottements dans un premier temps puis avec des effets tels que les intempéries
- et donc des frottements et éventuellement des masses variables selon les
- tortues (à voir).
+ frottements dans un premier temps puis avec des effets tels que du vent
+ ou bien un sol différent suivant les parties.
  Le but sera donc en un nombre de lancers limités de détruire les ennemis
  qui se trouveront face aux tortues.
 \end_layout
@@ -765,13 +764,29 @@ Taille de l'ennemi selon x et y
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Part
+Création du score
+\end_layout
+
+\begin_layout Standard
+Le but d'un jeu vidéo est de pouvoir se confronter à d'autres adversaires
+ en comparant leurs scores.
+ C'est donc pour cela que nous avons réaliser un score pour chaque lancer
+ de balle.
+ Le score est inversement proportionnelle à la distance minimal entre la
+ balle et l'ennemi lors d'un lancer.
+ Si la balle touche l'ennemi alors la partie est arrêter et le joueur gagne
+ le maximum en score soit 500 plus la somme des autres scores réaliser au
+ tour précedent.
+ Le score final est la moyenne de touts les scores précedent.
+ Ainsi chaque joueur peut comparer son score à d'autre sachant que le score
+ max est 500 et il peut être atteint seulement en touchant l'ennemi au premier
+ lancer.
 \end_layout
 
 \begin_layout Part

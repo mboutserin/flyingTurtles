@@ -257,8 +257,8 @@ Cas d'un lancer sans frottements :
 \color inherit
 on considère les constantes m (la masse de la tortue) et la constante de
  gravité g=9,81m/s.
- On entre également deux variables choisie arbitrairement par l'utilisateur
- du logiciel, v
+ Les conditions initiales sont entrées par l'utilisateur en cliquant avec
+ la souris : v
 \begin_inset script subscript
 
 \begin_layout Plain Layout
@@ -372,10 +372,6 @@ Pour le coder sur CodeBlocks, on a utilisé la méthode de Newton en prenant
 
 , la vitesse selon x et la vitesse selon y qui vont donc varier selon la
  méthode de Newton.
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -456,10 +452,6 @@ Lancer d'une tortue avec frottement
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -584,7 +576,7 @@ Boue
 \begin_inset Text
 
 \begin_layout Plain Layout
-coeff = 0.4
+R = 0.4
 \end_layout
 
 \end_inset
@@ -604,7 +596,7 @@ Herbe
 \begin_inset Text
 
 \begin_layout Plain Layout
-coeff = 0.6
+R = 0.6
 \end_layout
 
 \end_inset
@@ -624,7 +616,7 @@ Béton
 \begin_inset Text
 
 \begin_layout Plain Layout
-coeff = 0.95
+R = 0.95
 \end_layout
 
 \end_inset
@@ -646,10 +638,6 @@ Coefficient de rebond en fonction du type de sol
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -682,10 +670,6 @@ Rebondissement de la tortue
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -727,10 +711,6 @@ Position de l'ennemi selon x et y
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 Et sa taille comme cela :
@@ -763,10 +743,6 @@ Taille de l'ennemi selon x et y
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -852,9 +828,25 @@ GitHub
 
 \begin_layout Standard
 Afin de partager notre avancement sur le projet ou que nous soyons, nous
- avons décidé d'utiliser le site Github.
- Github permet la gestion de version de code ou de document.
- L'adresse est la suivante : 
+ avons décidé d'utiliser git et le site Github.
+\end_layout
+
+\begin_layout Standard
+Git permet de versionner du code ou des documents, c'est à dire que chacun
+ peut ajouter des modifications, et git permet de considérer chacune d'elle
+ comme une nouvelle version du programme ou du document.
+ On peut ainsi fusionner les versions quand les modifications portent sur
+ la même partie du code, voir qui a fait quoi, retirer une modification
+ qui s'avère mauvaise, retrouver un changement pour traquer un bug, etc.
+\end_layout
+
+\begin_layout Standard
+Github est un serveur web permetant aux utilisateurs de git de centraliser
+ et partager leur code.
+ Ce site permet pour de petit projets de se passer de la mise en place d'un
+ serveur disponible en permanence.
+ Il permet aussi de difuser et partager son projet sur internet.
+ L'adresse de ntroe projet est la suivante : 
 \begin_inset Flex URL
 status collapsed
 

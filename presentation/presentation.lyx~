@@ -365,13 +365,14 @@ y & = & -\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
 \begin_inset Newline newline
 \end_inset
 
-Pour le coder sur CodeBlocks, on a utilisé la méthode de Newton en prenant
+Pour le coder sur CodeBlocks, on utilise la méthode de Newton en prenant
  un temps 
 \begin_inset Formula $\Delta t$
 \end_inset
 
-, la vitesse selon x et la vitesse selon y qui vont donc varier selon la
- méthode de Newton.
+ (d'une valeur constante et définie d'office dans le programme), la vitesse
+ selon x et la vitesse selon y qui vont donc varier selon la méthode de
+ Newton.
 \begin_inset Newline newline
 \end_inset
 
@@ -399,20 +400,16 @@ vitesse1(1) = objet.getVy() + acceleration(1)*delta_t/1000;
 \end_layout
 
 \begin_layout Standard
-Les accélérations sont calculées grace aux forces du vent (pour la vitesse
+Les accélérations sont calculées grâce aux forces du vent (pour la vitesse
  en x) et de la gravitation (pour la vitesse en y).
  La force f du vent est choisie de manière aléatoire à chaque nouvelle partie
- et la gravitation reste toujours la même, on obtient donc facilement l'accéléra
-tion selon x et selon y.
+ mais reste une valeur constante avec des limites de valeurs et la gravitation
+ reste toujours la même, on obtient donc facilement l'accélération selon
+ x et selon y.
 \begin_inset Newline newline
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-On choisit donc cette méthode et ce cas sans frottements pour modéliser
- notre jeu.
 \begin_inset Newline newline
 \end_inset
 
@@ -489,7 +486,7 @@ En résolvant l'équation différentielle et en intégrant le résultat, on obti
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray}
-x & = & \tau.(v_{0}.cos(\theta)+f.\tau).(1-exp(-\frac{t}{\tau}))-f.t.\tau\label{eq:equationx}\\
+x & = & \tau.(v_{0}.cos(\theta)-f.\tau).(1-exp(-\frac{t}{\tau}))+f.t.\tau\label{eq:equationx}\\
 y & = & \tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\label{eq:trajectoirey}
 \end{eqnarray}
 
@@ -501,6 +498,12 @@ y & = & \tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\label{
 
 On décide par la suite de ne pas utiliser le cas avec frottements pour des
  raisons pratiques conçernant le rebond.
+\begin_inset Newline newline
+\end_inset
+
+Etant donné cela, on utilise le cas d'une trajectoire sans frottements pour
+ une facilité d'adaptation et la méthode de Newton pour modéliser cette
+ trajectoire et donc le déplacement de la tortue.
 \end_layout
 
 \begin_layout Part
@@ -691,7 +694,10 @@ Rebondissement de la tortue
 
 \end_inset
 
-
+Le revêtement du sol est choisi de manière aléatoire à chaque nouvelle partie
+ et le coefficient de rebond change donc en même temps.
+ Pour un soucis graphique, au lancer d'une partie, le revêtement du sol
+ est vert quand on a de l'herbe, gris pour le béton et marron pour la boue.
 \end_layout
 
 \begin_layout Part
@@ -733,7 +739,9 @@ Position de l'ennemi selon x et y
 
 \end_inset
 
-Et sa taille comme cela :
+Il en est de même pour les dimensions de l'ennemi, elles sont choisi aléatoireme
+nt dans les limites définies.
+ Elles sont donc obtenues ainsi:
 \end_layout
 
 \begin_layout Standard
@@ -766,13 +774,29 @@ Taille de l'ennemi selon x et y
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Part
+Création du score
+\end_layout
+
+\begin_layout Standard
+Le but d'un jeu vidéo est de pouvoir se confronter à d'autres adversaires
+ en comparant leurs scores.
+ C'est donc pour cela que nous avons réaliser un score pour chaque lancer
+ de balle.
+ Le score est inversement proportionnelle à la distance minimal entre la
+ balle et l'ennemi lors d'un lancer.
+ Si la balle touche l'ennemi alors la partie est arrêter et le joueur gagne
+ le maximum en score soit 500 plus la somme des autres scores réaliser au
+ tour précedent.
+ Le score final est la moyenne de touts les scores précedent.
+ Ainsi chaque joueur peut comparer son score à d'autre sachant que le score
+ max est 500 et il peut être atteint seulement en touchant l'ennemi au premier
+ lancer.
 \end_layout
 
 \begin_layout Part
@@ -851,7 +875,7 @@ GitHub
 \end_layout
 
 \begin_layout Standard
-Afin de partager notre avancement sur le projet ou que nous soyons, nous
+Afin de partager notre avancement sur le projet où que nous soyons, nous
  avons décidé d'utiliser le site Github.
  Github permet la gestion de version de code ou de document.
  L'adresse est la suivante : 
@@ -865,7 +889,9 @@ https://github.com/mboutserin/flyingTurtles.git
 
 \end_inset
 
- 
+.
+ Nous avons donc pu apprendre à nous servir des commandes lié a ce site
+ et travailler de manière efficace de notre côté.
 \end_layout
 
 \end_body

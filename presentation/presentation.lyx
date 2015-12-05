@@ -370,12 +370,8 @@ Pour le coder sur CodeBlocks, on a utilisé la méthode de Newton en prenant
 \begin_inset Formula $\Delta t$
 \end_inset
 
-<<<<<<< HEAD
 , la vitesse selon x et la vitesse selon y qui vont donc varier selon la
  méthode de Newton.
-=======
-
->>>>>>> 5456bdd... plein de choses
 \end_layout
 
 \begin_layout Standard
@@ -752,7 +748,27 @@ Taille de l'ennemi selon x et y
 
 \end_inset
 
-<<<<<<< HEAD
+
+\end_layout
+
+\begin_layout Part
+Création du score
+\end_layout
+
+\begin_layout Standard
+Le but d'un jeu vidéo est de pouvoir se confronter à d'autres adversaires
+ en comparant leurs scores.
+ C'est donc pour cela que nous avons réaliser un score pour chaque lancer
+ de balle.
+ Le score est inversement proportionnelle à la distance minimal entre la
+ balle et l'ennemi lors d'un lancer.
+ Si la balle touche l'ennemi alors la partie est arrêter et le joueur gagne
+ le maximum en score soit 500 plus la somme des autres scores réaliser au
+ tour précedent.
+ Le score final est la moyenne de touts les scores précedent.
+ Ainsi chaque joueur peut comparer son score à d'autre sachant que le score
+ max est 500 et il peut être atteint seulement en touchant l'ennemi au premier
+ lancer.
 \end_layout
 
 \begin_layout Part
@@ -850,11 +866,7 @@ Github est un serveur web permetant aux utilisateurs de git de centraliser
  Ce site permet pour de petit projets de se passer de la mise en place d'un
  serveur disponible en permanence.
  Il permet aussi de difuser et partager son projet sur internet.
-<<<<<<< HEAD
- L'adresse de ntroe projet est la suivante : 
-=======
  L'adresse de notre projet est la suivante : 
->>>>>>> 5456bdd... plein de choses
 \begin_inset Flex URL
 status collapsed
 
@@ -865,16 +877,7 @@ https://github.com/mboutserin/flyingTurtles.git
 
 \end_inset
 
-<<<<<<< HEAD
- 
-=======
-.
-\end_layout
 
-\begin_layout Standard
-Nous avons donc pu apprendre à nous servir des commandes lié a ce site et
- travailler de manière efficace de notre côté.
->>>>>>> 5456bdd... plein de choses
 \end_layout
 
 \end_body

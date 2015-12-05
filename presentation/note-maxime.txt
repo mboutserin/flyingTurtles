@@ -1,0 +1,85 @@
+# Je referais les parties de la façon suivante (parce qu'on a développé un jeu vidéo en premier lieu) :
+partie I : présentation du jeu
+# où l'on présente le jeu : objectif et gameplay
+
+partie II : simulation du lancé de tortue
+section 1 : lancé d'une tortue
+section 2 : les rebonds
+section 3 : l'ennemi
+
+partie III : architecture du programme
+section 1 : architecture trois tier
+section 2 : diagramme de classe
+section 3 : intérêt de l'architecture
+
+partie IV : méthode et organisation du travail
+
+Partie I
+
+Partie II - section 1
+# attention : je crois qu'on utilise ici "lancé" plutôt que "lancer"
+# bon jusqu'au premier schéma mais ensuite :
+Pour évaluer la trajectoire de la tortue, nous simulons sa course en utilisant la méthode d'Euler et le principe fondamental de la dynamique :
+1) On connaît la position et la vitesse de la tortue à l'instant présent (les conditions initiales sont déterminé par le jeu et l'utilisateur à l'instant t0 et par le simulateur ensuite).
+2) On applique le PFD dans cette situation pour connaître l'accélération de la tortue :
+- somme(F) = m*a1
+- bilan des forces :
+-- vent ;
+-- gravité ;
+-- le sol est géré différemment et expliqué dans la partie II.
+3) On actualise la position de la tortue avec sa vitesse :
+- p1 = v0*delta_t + p0
+- p0 : vecteur position à l'instant t0
+- p1 : vecteur position à l'instant t1
+- v0 : vecteur vitesse à l'instant t0
+4) On en déduit vitesse à l'instant t+1 :
+- v1 = a0*delta_t + v0
+
+Nous devions ici choisir entre actualiser la position avant ou après avoir actualisé la vitesse. Il nous a semblé plus logique de le faire avant pour que toutes les valeurs à l'instant t1 dépendent des valeurs à l'instant t0 et pas un mélange des deux.
+
+partie II - section 2 - Les rebonds
+
+Pour simplifier la gestion des rebonds, nous avons considéré qu'ils pouvaient être modélisé de la façon suivante :
+- lorsque la balle touche le sol, sa vitesse est modifiée de sorte que v1 = -R*v0
+- on considère un coefficient de rebond R positif entre 0 et 1 ne dépendant que du sol et modélisant l'absorption de l'énergie lors du rebond.
+ #+ suite
+
+partie II - section 3
+# ok
+
+partie III - section 1
+# ok
+partie III - section 2
+Le programme n'est qu'avec des objets, c'est de la programmation orientée objet. Nous pouvons donc présenter le programme sous la forme d'un diagramme de classes.
+2.1. Les classes de la couche métier
+Main : entrée du programme
+Jeu : Classe responsable de l'orchestration du jeu en lui même. Cette classe centralise les options du jeu (que peut modifier l'utilisateur), ses paramètres (difficulté via la position de l'ennemi, la taille du terrain, les valeurs associées au vent, à la gravité, au sol, etc.), vérifie les conditions de victoire et de défaite, etc.
+Options : Classe centralisant l'ensemble des options modifiables du jeu.
+SimulationPhy : Classe responsable de la partie simulation physique. Dans les jeux vidéo, on appelle cette partie le moteur physique et il est responsable de la façon dont se déplace et évoluent les objets dans le monde du jeu.
+Objet : Classe représentant un objet du monde du jeu (en l'occurence, l'ennemi et la tortue).
+
+2.2. Les classes de la couche présentation
+Interface : Classe responsable de la communication avec le joueur via la console (message et options).
+Fenetre : Classe permettant l'affichage et centralisant toute la partie graphique liée à la librairie root.
+
+2.3. Les classes de la couche données
+Trace : Classe permettant d'enregistrer la position et la vitesse d'un objet  à chaque instant de la simulation dans un fichier texte.
+
+2.4. Diagramme de classes
+# un diagramme que je vais essayer de faire ou alors je vous enverrai une photo du diagramme
+Légende :
+- boite : une classe, on ne représente pas ici ses variables et fonctions pour gagner de la place
+- flèche : la flèche va de la classe qui contrôle à la classe contrôlée
+- nombre : nombre d'instance de l'objet qui contrôle (à la base de la flèche) et nombre d'instance de l'objet contrôlé (à la pointe)
+
+Partie III - section 3
+Les intérêts de ce découpage et de cette architecture sont multiples. Le premier intérêt et la modularité et la réutilisabilité du code, le second est la possibilité de partager le travail.
+
+Dans notre cas, les classes SimulationPhy et Objet peuvent être en théorie réutilisées pour n'importe quelle simulation de cinématique. Et le découpage des fonctions permet également de modifier simplement les méthodes de calcul et de simulation. On a utilisé ici la méthode d'Euler mais on pourrait aisément ajouter la méthode RK4 pour la remplacer. De même on pourrait simplement faire les calculs à l'aide d'une librairie spécialisée comme armadillo ou root. Ces changements ne demanderait chacun que l'ajout ou la modification d'une fonction.
+
+Pour ce qui est de la répartition du travail, avec notre code une personne pourait travailler sur l'interface pendant qu'une autre travaillerait sur le simulateur et la troisième sur le jeu par exemple.
+
+Enfin, l'architecture et le découpage propre du programme permettent de mettre en évidence les algorithmes du programme et ainsi de plus facilement voir leurs avantages et leurs défauts. Ils permettent également un débogage plus facile.
+
+Partie IV
+# ok

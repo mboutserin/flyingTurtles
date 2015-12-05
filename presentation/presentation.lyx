@@ -1,5 +1,5 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass article
@@ -48,13 +48,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -74,24 +74,15 @@
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_package amsmath 1
-\use_package amssymb 1
-\use_package cancel 1
-\use_package esint 1
-\use_package mathdots 1
-\use_package mathtools 1
-\use_package mhchem 1
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
-\cite_engine natbib
-\cite_engine_type numerical
-\biblio_style plainnat
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_numerical
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
 \use_refstyle 0
 \boxbgcolor #e0e3e6
 \index Index
@@ -136,7 +127,7 @@ M.
 \end_layout
 
 \begin_layout Date
-16 octobre 2015
+6 décembre 2015
 \end_layout
 
 \begin_layout Abstract
@@ -242,7 +233,62 @@ newpage
 \end_layout
 
 \begin_layout Part
-Lancer simple d'une tortue (assimilable au lancer d'une balle)
+Présentation du jeu
+\end_layout
+
+\begin_layout Standard
+FlyingTurtles est un jeu basé sur le même principe qu'Angry Birds avec les
+ mêmes bases physique.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/AngryBirds.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Exemple d'un niveau d'Angry Birds
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+On se base sur le lancée d'une balle pour détruire un ennemi généré aléatoiremen
+t avec du vent et un sol différent pour chaque partie afin de durcir le
+ jeu.
+\end_layout
+
+\begin_layout Part
+Simulation du lancé d'une tortue
+\end_layout
+
+\begin_layout Standard
+2.1) Lancé d'une tortue
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -268,16 +314,11 @@ on considère les constantes m (la masse de la tortue) et la constante de
 \end_inset
 
  la vitesse initiale en m/s et 
-\begin_inset Formula $\theta_{0}$
+\begin_inset Formula $\alpha$
 \end_inset
 
  l'angle de lancer initial.
- Finalement, on considère la force du vent notée f qui est choisie constante
- et au hasard ( entre -5m/s² et 5m/s² ).
-\begin_inset Newline newline
-\end_inset
-
-
+ 
 \end_layout
 
 \begin_layout Standard
@@ -301,7 +342,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Conditions initiales d'un lancer de balle
@@ -314,92 +355,123 @@ Conditions initiales d'un lancer de balle
 
 \end_inset
 
-En utilisant le Principe Fondamental de la Dynamique, on a donc :
-\begin_inset Formula 
-\begin{eqnarray}
-m\frac{d^{2}x}{dt^{2}} & = & f\\
-m\frac{d^{2}y}{dt^{2}} & = & -mg
-\end{eqnarray}
-
-\end_inset
-
-en intégrant par rapport au temps et par les conditions initiales, on a
- :
+Pour évaluer la trajectoire de la tortue, nous simulons sa course en utilisant
+ la méthode d'Euler et le principe fondamental de la dynamique : 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-\frac{dx}{dt} & = & ft+v_{0}\\
-\frac{dy}{dt} & = & -gt+v_{0}
-\end{eqnarray}
-
+\align left
+1) On connaît la position et la vitesse de la tortue à l'instant présent
+ (les conditions initiales sont déterminé par le jeu et l'utilisateur à
+ l'instant 
+\begin_inset Formula $t{}_{0}$
 \end_inset
 
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newpage
-\end_layout
-
-\end_inset
-
- Et finalement, en re-intégrant, on obtient :
+ et par le simulateur ensuite).
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-x & = & \frac{ft^{2}}{2}+v_{0}.t.cos(\text{\theta})\\
-y & = & -\frac{gt^{2}}{2}+v_{0}.t.sin(\theta)
-\end{eqnarray}
+\align left
+2) On applique le PFD dans cette situation pour connaître l'accélération
+ de la tortue : 
+\begin_inset Newline newline
+\end_inset
 
+
+\begin_inset Formula ${\textstyle \sum\vec{F}=m.\vec{a}}$
 \end_inset
 
 
 \begin_inset Newline newline
 \end_inset
 
-Pour le coder sur CodeBlocks, on a utilisé la méthode de Newton en prenant
- un temps 
-\begin_inset Formula $\Delta t$
+Ici les deux forces que nous considérons sont le vent et la vitesse 
+\begin_inset Formula $v{}_{0}$
 \end_inset
 
-, la vitesse selon x et la vitesse selon y qui vont donc varier selon la
- méthode de Newton.
+.
 \end_layout
 
 \begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-vitesse1(0) = objet.getVx() + acceleration(0)*delta_t/1000;    
-\end_layout
-
-\begin_layout Plain Layout
-
-vitesse1(1) = objet.getVy() + acceleration(1)*delta_t/1000;
-\end_layout
-
+\align left
+3) On actualise la position de la tortue avec sa vitesse : 
+\begin_inset Newline newline
 \end_inset
 
 
+\begin_inset Formula $\vec{x{}_{1}}=\vec{v}_{0}.\delta t+\vec{x}_{0}$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\vec{x{}_{0}}$
+\end_inset
+
+ : vecteur position à l'instant 
+\begin_inset Formula $t{}_{0}$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\vec{x{}_{1}}$
+\end_inset
+
+: vecteur position à l'instant  
+\begin_inset Formula $t{}_{1}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\vec{v}_{0}$
+\end_inset
+
+: vecteur vitesse à l'instant 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard
-Les accélérations sont calculées grace aux forces du vent (pour la vitesse
- en x) et de la gravitation (pour la vitesse en y).
- La force f du vent est choisie de manière aléatoire à chaque nouvelle partie
- et la gravitation reste toujours la même, on obtient donc facilement l'accéléra
-tion selon x et selon y.
+\align left
+4) On en déduit vitesse à l'instant 
+\begin_inset Formula $t_{n+1}$
+\end_inset
+
+ : 
+\begin_inset Formula $v_{1}=a_{0}.\delta t+v_{0}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Nous devions ici choisir entre actualiser la position avant ou après avoir
+ actualisé la vitesse.
+ Il nous a semblé plus logique de le faire avant pour que toutes les valeurs
+ à l'instant 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ dépendent des valeurs à l'instant 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ et pas un mélange des deux.
+\end_layout
+
+\begin_layout Standard
+2.2) Les rebonds
 \begin_inset Newline newline
 \end_inset
 
@@ -407,110 +479,18 @@ tion selon x et selon y.
 \begin_inset Newline newline
 \end_inset
 
-On choisit donc cette méthode et ce cas sans frottements pour modéliser
- notre jeu.
+Pour simplifier la gestion des rebonds, nous avons considéré qu'ils pouvaient
+ être modélisé de la façon suivante, lorsque la balle touche le sol, sa
+ vitesse est modifiée de sorte que 
+\begin_inset Formula $v_{1}=-R*v_{0}$
+\end_inset
+
+ - on considère un coefficient de rebond R positif entre 0 et 1 ne dépendant
+ que du sol et modélisant l'absorption de l'énergie lors du rebond.
 \begin_inset Newline newline
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-
-\shape italic
-\bar under
-Cas d'un lancer avec frottements :
-\shape default
-\bar default
- On reprend les notations et les équations qui précèdent en ajoutant les
- composantes liées à la force de frottement F.
- On définit la constante k qui est le coefficient de frottement de l'air.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/balleQuiBougeAvecFrottements.xcf
-	scale 40
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Lancer d'une tortue avec frottement
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-On applique donc à nouveau le PFD, on a : 
-\begin_inset Formula 
-\begin{eqnarray}
-\frac{d^{2}x}{dt^{2}}+\frac{k}{m}.\frac{dx}{dt} & = & f\\
-\frac{d^{2}y}{dt^{2}}+\frac{k}{m}.\frac{dy}{dt} & = & -g
-\end{eqnarray}
-
-\end_inset
-
-En résolvant l'équation différentielle et en intégrant le résultat, on obtient
- le résultat suivant en posant 
-\begin_inset Formula $\tau=\frac{m}{k}$
-\end_inset
-
- :
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray}
-x & = & \tau.(v_{0}.cos(\theta)+f.\tau).(1-exp(-\frac{t}{\tau}))-f.t.\tau\label{eq:equationx}\\
-y & = & \tau.(v_{0}.sin(\theta)+g.\tau).(1-exp(-\frac{t}{\tau}))-g.t.\tau\label{eq:trajectoirey}
-\end{eqnarray}
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-On décide par la suite de ne pas utiliser le cas avec frottements pour des
- raisons pratiques conçernant le rebond.
-\end_layout
-
-\begin_layout Part
-Les rebonds
-\end_layout
-
-\begin_layout Standard
-Après la première trajectoire, on multiplie la vitesse v
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-
-par un coefficient de rebond qui dépend du revêtement sur le sol.
- Ce revêtement de sol peut être de trois types différents : herbe, béton,
+Ce revêtement de sol peut être de trois types différents : herbe, béton,
  boue.
  Les coefficient de rebond sont repartis comme ceci :
 \end_layout
@@ -539,9 +519,9 @@ status open
 \lang english
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -630,7 +610,7 @@ R = 0.95
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Coefficient de rebond en fonction du type de sol
@@ -662,7 +642,7 @@ status open
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Rebondissement de la tortue
@@ -678,11 +658,15 @@ Rebondissement de la tortue
 
 \end_layout
 
-\begin_layout Part
-Modélisation de l'ennemi
-\end_layout
-
 \begin_layout Standard
+2.3) Modélisation de l'ennemi
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 La position de l'ennemi est choisie de manière aléatoire par le programme.
  Sa position est déterminée de la manière suivante :
 \begin_inset Float figure
@@ -700,7 +684,7 @@ status open
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Position de l'ennemi selon x et y
@@ -735,7 +719,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Taille de l'ennemi selon x et y
@@ -776,6 +760,14 @@ Architecture du programme
 \end_layout
 
 \begin_layout Standard
+2.1) Architecture trois tiers
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 Afin d'éclaircir le programme ,de le rendre plus lisible et plus facile
  de compréhension, nous avons décidé de créer une architecture pour notre
  programme.
@@ -826,7 +818,7 @@ status open
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Représentation de l'architecture Trois Tiers
@@ -840,6 +832,145 @@ Représentation de l'architecture Trois Tiers
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+2.2) Diagramme de classe
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Le programme n'est qu'avec des objets, c'est de la programmation orientée
+ objet.
+ Nous pouvons donc présenter le programme sous la forme d'un diagramme de
+ classes.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+2.2.1) Les classes de la couche métier 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Main : entrée du programme
+\begin_inset Newline newline
+\end_inset
+
+Jeu : Classe responsable de l'orchestration du jeu en lui même.
+ Cette classe centralise les options du jeu (que peut modifier l'utilisateur),
+ ses paramètres (difficulté via la position de l'ennemi, la taille du terrain,
+ les valeurs associées au vent, à la gravité, au sol, etc.), vérifie les
+ conditions de victoire et de défaite, etc.
+\begin_inset Newline newline
+\end_inset
+
+Options : Classe centralisant l'ensemble des options modifiables du jeu.
+\begin_inset Newline newline
+\end_inset
+
+SimulationPhy : Classe responsable de la partie simulation physique.
+ Dans les jeux vidéo, on appelle cette partie le moteur physique et il est
+ responsable de la façon dont se déplace et évoluent les objets dans le
+ monde du jeu.
+\begin_inset Newline newline
+\end_inset
+
+Objet : Classe représentant un objet du monde du jeu (en l'occurence, l'ennemi
+ et la tortue).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+2.2.2) Les classes de la couche présentation 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Interface : Classe responsable de la communication avec le joueur via la
+ console (message et options).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Fenetre : Classe permettant l'affichage et centralisant toute la partie
+ graphique liée à la librairie root.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+2.2.3) Les classes de la couche données
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Trace : Classe permettant d'enregistrer la position et la vitesse d'un objet
+ à chaque instant de la simulation dans un fichier texte.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2.3) Interêt de l'architecture
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Les intérêts de ce découpage et de cette architecture sont multiples.
+ Le premier intérêt et la modularité et la réutilisabilité du code, le second
+ est la possibilité de partager le travail.
+\begin_inset Newline newline
+\end_inset
+
+Dans notre cas, les classes SimulationPhy et Objet peuvent être en théorie
+ réutilisées pour n'importe quelle simulation de cinématique.
+ Et le découpage des fonctions permet également de modifier simplement les
+ méthodes de calcul et de simulation.
+ On a utilisé ici la méthode d'Euler mais on pourrait aisément ajouter la
+ méthode RK4 pour la remplacer.
+ De même on pourrait simplement faire les calculs à l'aide d'une librairie
+ spécialisée comme armadillo ou root.
+ Ces changements ne demanderait chacun que l'ajout ou la modification d'une
+ fonction.
+\begin_inset Newline newline
+\end_inset
+
+Pour ce qui est de la répartition du travail, avec notre code une personne
+ pourait travailler sur l'interface pendant qu'une autre travaillerait sur
+ le simulateur et la troisième sur le jeu par exemple.
+\begin_inset Newline newline
+\end_inset
+
+Enfin, l'architecture et le découpage propre du programme permettent de
+ mettre en évidence les algorithmes du programme et ainsi de plus facilement
+ voir leurs avantages et leurs défauts.
+ Ils permettent également un débogage plus facile.
 \end_layout
 
 \begin_layout Part
@@ -878,6 +1009,20 @@ https://github.com/mboutserin/flyingTurtles.git
 \end_inset
 
 
+\end_layout
+
+\begin_layout Part
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Lors de ce projet nous voulions réaliser un vrai jeu avec de beau graphisme
+ mais cela nécessite énormément de temps qui nous as manquer.
+ On aurait voulu utliser la bibliothèque Qt qui est une ressource très largement
+ utilisé dans le dévellopement de jeux vidéos ou bien de software car elle
+ permet une grande modularité au niveau graphisme.
+ Notre jeu s'appellant flyingTurtles, nous aurions voulu faire voler des
+ tortues au lieu de lancer des balles.
 \end_layout
 
 \end_body

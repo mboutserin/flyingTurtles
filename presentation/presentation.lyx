@@ -135,8 +135,7 @@ Lors de ce projet nous allons développer un jeu en C++ basé sur le jeu Angry
  Birds, il sera nommé flyingTurtles.
  Ce jeu se base sur la mécanique car assimilé à un lancer de balle sans
  frottements dans un premier temps puis avec des effets tels que les intempéries
- et donc des frottements et éventuellement des masses variables selon les
- tortues (à voir).
+ et un sol changeant aléatoirement entre chaque partie.
  Le but sera donc en un nombre de lancers limités de détruire les ennemis
  qui se trouveront face aux tortues.
 \end_layout
@@ -268,15 +267,56 @@ Exemple d'un niveau d'Angry Birds
 
 \end_layout
 
+\end_inset
+
+On se base sur le lancé d'une balle pour détruire un ennemi génèré aléatoirement
+ avec du vent et un sol différent pour chaque partie afin de durcir le jeu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/flyingTurtles.xcf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Exemple d'une génération aléatoire de flyingTurtles (herbe au sol)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 
 \end_layout
 
 \end_inset
 
-On se base sur le lancée d'une balle pour détruire un ennemi généré aléatoiremen
-t avec du vent et un sol différent pour chaque partie afin de durcir le
- jeu.
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part
@@ -296,7 +336,7 @@ Simulation du lancé d'une tortue
 \shape italic
 \bar under
 \color black
-Cas d'un lancer sans frottements :
+Cas d'un lancé sans frottements :
 \bar default
  
 \shape default
@@ -345,7 +385,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Conditions initiales d'un lancer de balle
+Conditions initiales d'un lancé de balle
 \end_layout
 
 \end_inset
@@ -362,8 +402,8 @@ Pour évaluer la trajectoire de la tortue, nous simulons sa course en utilisant
 \begin_layout Standard
 \align left
 1) On connaît la position et la vitesse de la tortue à l'instant présent
- (les conditions initiales sont déterminé par le jeu et l'utilisateur à
- l'instant 
+ (les conditions initiales sont déterminées par le jeu et l'utilisateur
+ à l'instant 
 \begin_inset Formula $t{}_{0}$
 \end_inset
 
@@ -444,7 +484,7 @@ Ici les deux forces que nous considérons sont le vent et la vitesse
 
 \begin_layout Standard
 \align left
-4) On en déduit vitesse à l'instant 
+4) On en déduit la vitesse à l'instant 
 \begin_inset Formula $t_{n+1}$
 \end_inset
 
@@ -485,7 +525,11 @@ Pour simplifier la gestion des rebonds, nous avons considéré qu'ils pouvaient
 \begin_inset Formula $v_{1}=-R*v_{0}$
 \end_inset
 
- - on considère un coefficient de rebond R positif entre 0 et 1 ne dépendant
+ .
+\begin_inset Newline newline
+\end_inset
+
+On considère un coefficient de rebond R positif entre 0 et 1 ne dépendant
  que du sol et modélisant l'absorption de l'énergie lors du rebond.
 \begin_inset Newline newline
 \end_inset
@@ -637,7 +681,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Images/Rebond.jpg
-	scale 40
+	scale 25
 
 \end_inset
 
@@ -679,7 +723,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Images/PositionEnnemi.jpg
-	scale 40
+	scale 30
 
 \end_inset
 
@@ -745,14 +789,14 @@ Le but d'un jeu vidéo est de pouvoir se confronter à d'autres adversaires
  C'est donc pour cela que nous avons réaliser un score pour chaque lancer
  de balle.
  Le score est inversement proportionnelle à la distance minimal entre la
- balle et l'ennemi lors d'un lancer.
- Si la balle touche l'ennemi alors la partie est arrêter et le joueur gagne
- le maximum en score soit 500 plus la somme des autres scores réaliser au
- tour précedent.
- Le score final est la moyenne de touts les scores précedent.
+ balle et l'ennemi lors d'un lancé.
+ Si la balle touche l'ennemi alors la partie est arrêté et le joueur gagne
+ le maximum en score soit 500 plus la somme des autres scores réaliser aux
+ tours précedents.
+ Le score final est la moyenne de tous les scores précedents.
  Ainsi chaque joueur peut comparer son score à d'autre sachant que le score
- max est 500 et il peut être atteint seulement en touchant l'ennemi au premier
- lancer.
+ max est de 500 et il peut être atteint seulement en touchant l'ennemi au
+ premier lancé.
 \end_layout
 
 \begin_layout Part
@@ -768,7 +812,7 @@ Architecture du programme
 \begin_inset Newline newline
 \end_inset
 
-Afin d'éclaircir le programme ,de le rendre plus lisible et plus facile
+Afin d'éclaircir le programme, de le rendre plus lisible et plus facile
  de compréhension, nous avons décidé de créer une architecture pour notre
  programme.
  On utilise l'architecture trois tiers : une couche présentation, une autre
@@ -812,8 +856,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/TroisTiers.jpg
-	scale 60
+	filename Images/TroisTiers.xcf
+	scale 50
 
 \end_inset
 
@@ -880,7 +924,7 @@ Options : Classe centralisant l'ensemble des options modifiables du jeu.
 
 SimulationPhy : Classe responsable de la partie simulation physique.
  Dans les jeux vidéo, on appelle cette partie le moteur physique et il est
- responsable de la façon dont se déplace et évoluent les objets dans le
+ responsable de la façon dont se déplacent et évoluent les objets dans le
  monde du jeu.
 \begin_inset Newline newline
 \end_inset
@@ -956,8 +1000,8 @@ Dans notre cas, les classes SimulationPhy et Objet peuvent être en théorie
  méthode RK4 pour la remplacer.
  De même on pourrait simplement faire les calculs à l'aide d'une librairie
  spécialisée comme armadillo ou root.
- Ces changements ne demanderait chacun que l'ajout ou la modification d'une
- fonction.
+ Ces changements ne demanderaient chacun que l'ajout ou la modification
+ d'une fonction.
 \begin_inset Newline newline
 \end_inset
 
@@ -983,7 +1027,7 @@ Afin de partager notre avancement sur le projet ou que nous soyons, nous
 \end_layout
 
 \begin_layout Standard
-Git permet de versionner du code ou des documents, c'est à dire que chacun
+Git permet de versionner du code ou des documents, c'est-à-dire que chacun
  peut ajouter des modifications, et git permet de considérer chacune d'elle
  comme une nouvelle version du programme ou du document.
  On peut ainsi fusionner les versions quand les modifications portent sur
@@ -992,11 +1036,11 @@ Git permet de versionner du code ou des documents, c'est à dire que chacun
 \end_layout
 
 \begin_layout Standard
-Github est un serveur web permetant aux utilisateurs de git de centraliser
+Github est un serveur web permettant aux utilisateurs de git de centraliser
  et partager leur code.
  Ce site permet pour de petit projets de se passer de la mise en place d'un
  serveur disponible en permanence.
- Il permet aussi de difuser et partager son projet sur internet.
+ Il permet aussi de diffuser et partager son projet sur internet.
  L'adresse de notre projet est la suivante : 
 \begin_inset Flex URL
 status collapsed
@@ -1017,12 +1061,20 @@ Conclusion
 
 \begin_layout Standard
 Lors de ce projet nous voulions réaliser un vrai jeu avec de beau graphisme
- mais cela nécessite énormément de temps qui nous as manquer.
+ mais cela nécessite énormément de temps, ce qui nous a manqué.
  On aurait voulu utliser la bibliothèque Qt qui est une ressource très largement
- utilisé dans le dévellopement de jeux vidéos ou bien de software car elle
+ utilisée dans le développement de jeux vidéos ou bien de software car elle
  permet une grande modularité au niveau graphisme.
  Notre jeu s'appellant flyingTurtles, nous aurions voulu faire voler des
  tortues au lieu de lancer des balles.
+\begin_inset Newline newline
+\end_inset
+
+Cependant, ce projet nous a permis de développer notre connaissance dans
+ le domaine de programmation C++.
+ Nous voulions un projet mélangeant à la fois un domaine physique et esprit
+ de jeu vidéo.
+ Nous aurions voulu plus de temps afin de réaliser un jeu fini.
 \end_layout
 
 \end_body

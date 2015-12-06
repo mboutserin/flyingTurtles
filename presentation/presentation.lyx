@@ -804,7 +804,7 @@ Architecture du programme
 \end_layout
 
 \begin_layout Standard
-2.1) Architecture trois tiers
+4.1) Architecture trois tiers
 \begin_inset Newline newline
 \end_inset
 
@@ -879,7 +879,7 @@ Représentation de l'architecture Trois Tiers
 \end_layout
 
 \begin_layout Standard
-2.2) Diagramme de classe
+4.2) Diagramme de classe
 \begin_inset Newline newline
 \end_inset
 
@@ -898,7 +898,7 @@ Le programme n'est qu'avec des objets, c'est de la programmation orientée
 \begin_inset Newline newline
 \end_inset
 
-2.2.1) Les classes de la couche métier 
+4.2.1) Les classes de la couche métier 
 \begin_inset Newline newline
 \end_inset
 
@@ -938,7 +938,7 @@ Objet : Classe représentant un objet du monde du jeu (en l'occurence, l'ennemi
 \begin_inset Newline newline
 \end_inset
 
-2.2.2) Les classes de la couche présentation 
+4.2.2) Les classes de la couche présentation 
 \begin_inset Newline newline
 \end_inset
 
@@ -961,7 +961,7 @@ Fenetre : Classe permettant l'affichage et centralisant toute la partie
 \begin_inset Newline newline
 \end_inset
 
-2.2.3) Les classes de la couche données
+4.2.3) Les classes de la couche données
 \begin_inset Newline newline
 \end_inset
 
@@ -978,7 +978,7 @@ Trace : Classe permettant d'enregistrer la position et la vitesse d'un objet
 \end_layout
 
 \begin_layout Standard
-2.3) Interêt de l'architecture
+4.3) Interêt de l'architecture
 \begin_inset Newline newline
 \end_inset
 

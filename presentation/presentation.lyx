@@ -1027,10 +1027,6 @@ Enfin, l'architecture et le découpage propre du programme permettent de
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
 \begin_inset Float figure
 placement H
 wide false
@@ -1041,7 +1037,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Images/diag-classe.png
-	scale 25
+	scale 35
 
 \end_inset
 
@@ -1061,6 +1057,19 @@ Diagramme de classe de flyingTurtles
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le diagramme est une représentation visuelle de l'architecture objet du
+ programme.
+ Il permet de voir comment les classes interagissent entre elles.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 

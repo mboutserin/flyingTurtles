@@ -1015,6 +1015,55 @@ Enfin, l'architecture et le découpage propre du programme permettent de
  mettre en évidence les algorithmes du programme et ainsi de plus facilement
  voir leurs avantages et leurs défauts.
  Ils permettent également un débogage plus facile.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+4.4) Diagramme de classe
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/diag-classe.png
+	scale 25
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Diagramme de classe de flyingTurtles
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part
